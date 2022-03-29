@@ -5,6 +5,9 @@
 package vista;
 
 import control.Biblioteca;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import modelo.Usuario;
 
 /**
  *
@@ -14,10 +17,10 @@ public class PanelUsuario extends javax.swing.JPanel {
 
     Biblioteca miBiblioteca;
     VntInicio ventana;
-    
-    public PanelUsuario(Biblioteca miBiblioteca,VntInicio ventana) {
-        this.ventana=ventana;
-        this.miBiblioteca=miBiblioteca;
+
+    public PanelUsuario(Biblioteca miBiblioteca, VntInicio ventana) {
+        this.ventana = ventana;
+        this.miBiblioteca = miBiblioteca;
         initComponents();
     }
 
@@ -37,13 +40,15 @@ public class PanelUsuario extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
-        txtPass = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtPassComp = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         btnReturnLogin = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        lblPassError = new javax.swing.JLabel();
+        lblUserExist = new javax.swing.JLabel();
+        pswPass = new javax.swing.JPasswordField();
+        pswPassConfirm = new javax.swing.JPasswordField();
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jLabel1.setText("Alta de Usuario");
@@ -69,7 +74,12 @@ public class PanelUsuario extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setText("Repetir contraseña\n");
 
-        jButton1.setText("Registrar");
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnReturnLogin.setText("Volver Login");
         btnReturnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +88,18 @@ public class PanelUsuario extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Limpiar");
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        pswPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pswPassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,18 +122,22 @@ public class PanelUsuario extends javax.swing.JPanel {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtPass)
-                                        .addComponent(txtPassComp, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                                        .addComponent(txtApellido)
-                                        .addComponent(txtNombre)
-                                        .addComponent(txtUser))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                            .addComponent(txtNombre)
+                                            .addComponent(txtUser))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblUserExist, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnRegistrar)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton2)))))))
-                .addGap(45, 45, 45))
+                                        .addComponent(btnLimpiar))
+                                    .addComponent(lblPassError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pswPass, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pswPassConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,19 +155,22 @@ public class PanelUsuario extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUserExist))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pswPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(pswPassConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(lblPassError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnLimpiar)
                     .addComponent(btnReturnLogin))
                 .addGap(27, 27, 27))
         );
@@ -156,21 +184,66 @@ public class PanelUsuario extends javax.swing.JPanel {
         ventana.showLogin();
     }//GEN-LAST:event_btnReturnLoginActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtApellido.setText("");
+        txtNombre.setText("");
+        pswPass.setText("");
+        pswPassConfirm.setText("");
+        txtUser.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String pass = new String(pswPass.getPassword());
+        String passComp = new String(pswPassConfirm.getPassword());
+        String user = txtUser.getText();
+        boolean allOK = true;
+
+        if (miBiblioteca.existeUsuario(user)) {
+            allOK = false;
+            lblUserExist.setText("Usuario ya existente");
+            lblUserExist.setForeground(Color.red);
+        }else{
+            lblUserExist.setText("");
+        }
+        
+        if (!pass.equals(passComp)) {
+            allOK = false;
+            lblPassError.setText("Contraseñas no coinciden");
+            lblPassError.setForeground(Color.red);
+        }else{
+            lblPassError.setText("");
+        }
+        pswPass.setText("");
+        pswPassConfirm.setText("");
+        if(allOK){
+            miBiblioteca.grabarUsuario(nombre, apellido, user, pass);
+            JOptionPane.showMessageDialog(this, "Usuario grabado", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void pswPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pswPassActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnReturnLogin;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblPassError;
+    private javax.swing.JLabel lblUserExist;
+    private javax.swing.JPasswordField pswPass;
+    private javax.swing.JPasswordField pswPassConfirm;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPass;
-    private javax.swing.JTextField txtPassComp;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

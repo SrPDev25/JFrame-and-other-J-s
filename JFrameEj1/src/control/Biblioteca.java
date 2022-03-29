@@ -26,8 +26,14 @@ public class Biblioteca {
         usuarios.add(new Usuario("admin","admin","",""));
     }
     
-    public int buscarUsuario(String login, String pass) {
-        int pos = usuarios.indexOf(new Usuario(login, pass));
+    /**
+     * Busca por usuario
+     * @param login
+     * @param pass
+     * @return 
+     */
+    public int confirmarUsuario(String login, String pass) {
+        int pos = usuarios.indexOf(new Usuario(login));
 
         if (pos != -1) {
             if (!usuarios.get(pos).getContrasenna().equals(pass)) {
@@ -35,6 +41,23 @@ public class Biblioteca {
             }
         }
         return pos;
+    }
+    
+    /**
+     * Comprueba si existe un usuario en la base de datos
+     * @param login solo comprueba el usuario
+     * @return devuelve true si ya existe
+     */
+    public boolean existeUsuario(String login){
+        boolean existe=false;
+        if(usuarios.indexOf(new Usuario(login))!=-1){
+            existe=true;
+        }
+        return existe;
+    }
+    
+    public void grabarUsuario(String nombre, String apellido, String login, String contrasenna){
+        usuarios.add(new Usuario(nombre, apellido, login, contrasenna));
     }
 
 }

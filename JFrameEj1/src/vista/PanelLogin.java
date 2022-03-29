@@ -6,6 +6,7 @@ package vista;
 
 import control.Biblioteca;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,6 +49,11 @@ public class PanelLogin extends javax.swing.JPanel {
                 txtLoginActionPerformed(evt);
             }
         });
+        txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLoginKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jLabel2.setText("CONTRASEÑA");
@@ -55,6 +61,11 @@ public class PanelLogin extends javax.swing.JPanel {
         pswPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pswPassActionPerformed(evt);
+            }
+        });
+        pswPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pswPassKeyPressed(evt);
             }
         });
 
@@ -78,8 +89,8 @@ public class PanelLogin extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(158, Short.MAX_VALUE)
-                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(40, 40, 40)
@@ -136,7 +147,7 @@ public class PanelLogin extends javax.swing.JPanel {
         String login = txtLogin.getText();
         String pass = new String(pswPass.getPassword());
 
-        if (miBiblioteca.buscarUsuario(login, pass) != -1) {
+        if (miBiblioteca.confirmarUsuario(login, pass) != -1) {
             JOptionPane.showMessageDialog(this, "Usuario correcto", "Success", JOptionPane.INFORMATION_MESSAGE);
             lblError.setText("");
         } else {
@@ -148,6 +159,22 @@ public class PanelLogin extends javax.swing.JPanel {
     private void btnAltaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaUsuarioActionPerformed
         ventana.showRegister();
     }//GEN-LAST:event_btnAltaUsuarioActionPerformed
+
+    private void txtLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoginKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            pswPass.requestFocusInWindow();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            txtLogin.setText("");
+        }
+    }//GEN-LAST:event_txtLoginKeyPressed
+
+    private void pswPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswPassKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            btnLogin.doClick();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            pswPass.setText("");
+        }
+    }//GEN-LAST:event_pswPassKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

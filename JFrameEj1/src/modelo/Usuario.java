@@ -26,9 +26,8 @@ public class Usuario {
         librosPrestados=new ArrayList<>();
     }
 
-    public Usuario(String login, String contrasenna) {
+    public Usuario(String login) {
         this.login = login;
-        this.contrasenna = contrasenna;
     }
     
     
