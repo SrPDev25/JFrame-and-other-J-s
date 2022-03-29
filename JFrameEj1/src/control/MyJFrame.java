@@ -7,6 +7,7 @@ package control;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,8 +27,16 @@ public class MyJFrame extends JFrame {//Clase que hereda de JFrame
         setLocationRelativeTo(null); //no mueve la localización de la pantalla
         setVisible(true);
     }
-    
-    
-    
-    
+
+    /**
+     * Muestra un mensaje de confirmacion para advertenciaCierre la ventana
+     * Recuerda deshabilitar el cierre en las propiedades del JFrame
+     */
+    public void advertenciaCierre() {
+        int eleccion = JOptionPane.showConfirmDialog(this, "Desea cerrar el programa", "Cerrar", JOptionPane.WARNING_MESSAGE);
+        if (eleccion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
+
 }

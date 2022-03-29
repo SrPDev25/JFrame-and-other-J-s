@@ -6,6 +6,7 @@ package vista;
 
 import control.Biblioteca;
 import control.MyJFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,48 +47,23 @@ public class VntInicio extends MyJFrame {
     private void initComponents() {
 
         jMenu2 = new javax.swing.JMenu();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        mnuLogin = new javax.swing.JMenuItem();
-        btnRegistrar = new javax.swing.JMenuItem();
 
         jMenu2.setText("jMenu2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.FlowLayout());
-
-        jMenu1.setText("Sign");
-
-        mnuLogin.setText("Login");
-        mnuLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuLoginActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mnuLogin);
-
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
-            }
-        });
-        jMenu1.add(btnRegistrar);
-
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLoginActionPerformed
-        showLogin();
-    }//GEN-LAST:event_mnuLoginActionPerformed
-
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        showRegister();
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        advertenciaCierre();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -150,11 +126,7 @@ public class VntInicio extends MyJFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem btnRegistrar;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem mnuLogin;
     // End of variables declaration//GEN-END:variables
 
 }
