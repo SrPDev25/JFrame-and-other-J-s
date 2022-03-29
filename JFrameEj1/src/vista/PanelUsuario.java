@@ -6,8 +6,8 @@ package vista;
 
 import control.Biblioteca;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import modelo.Usuario;
 
 /**
  *
@@ -61,12 +61,29 @@ public class PanelUsuario extends javax.swing.JPanel {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+        });
+
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyPressed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("Apellido");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setText("Usuario");
+
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserKeyPressed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Contraseña");
@@ -98,6 +115,17 @@ public class PanelUsuario extends javax.swing.JPanel {
         pswPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pswPassActionPerformed(evt);
+            }
+        });
+        pswPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pswPassKeyPressed(evt);
+            }
+        });
+
+        pswPassConfirm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pswPassConfirmKeyPressed(evt);
             }
         });
 
@@ -226,6 +254,50 @@ public class PanelUsuario extends javax.swing.JPanel {
     private void pswPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswPassActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pswPassActionPerformed
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtApellido.requestFocusInWindow();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            txtNombre.setText("");
+        }else if(evt.getKeyCode()==KeyEvent.VK_F1){
+            txtNombre.setText("Tu nombre joder");
+        }
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtUser.requestFocusInWindow();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            txtApellido.setText("");
+        }else if(evt.getKeyCode()==KeyEvent.VK_F1){
+            txtApellido.setText("Tu apellido macho");
+        }
+    }//GEN-LAST:event_txtApellidoKeyPressed
+
+    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            pswPass.requestFocusInWindow();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            txtUser.setText("");
+        }
+    }//GEN-LAST:event_txtUserKeyPressed
+
+    private void pswPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswPassKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            pswPassConfirm.requestFocusInWindow();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            pswPass.setText("");
+        }
+    }//GEN-LAST:event_pswPassKeyPressed
+
+    private void pswPassConfirmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswPassConfirmKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            btnRegistrar.doClick();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            pswPassConfirm.setText("");
+        }
+    }//GEN-LAST:event_pswPassConfirmKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
