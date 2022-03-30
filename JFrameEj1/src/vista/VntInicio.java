@@ -6,7 +6,6 @@ package vista;
 
 import control.Biblioteca;
 import control.MyJFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -70,6 +69,37 @@ public class VntInicio extends MyJFrame {
     /**
      * @param args the command line arguments
      */
+    public void eliminarPanel() {
+        try {
+            this.remove(panelLogin);
+        } catch (Exception ex) {
+        }
+        try {
+            this.remove(panelUsuario);
+        } catch (Exception ex) {
+        }
+    }
+
+    public void showLogin() {
+        eliminarPanel();
+        panelLogin = new PanelLogin(miBiblioteca, this);
+        this.getContentPane().add(panelLogin);
+        pack();
+    }
+
+    public void showRegister() {
+        eliminarPanel();
+        panelUsuario = new PanelUsuario(miBiblioteca, this);
+        getContentPane().add(panelUsuario);
+        pack();
+    }
+
+    public void chargeVntControl() {
+        new VntAplicacionControl(miBiblioteca).setVisible(true);
+        this.dispose();
+        this.pack();
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -100,31 +130,6 @@ public class VntInicio extends MyJFrame {
                 new VntInicio().setVisible(true);
             }
         });
-    }
-
-    public void eliminarPanel() {
-        try {
-            this.remove(panelLogin);
-        } catch (Exception ex) {
-        }
-        try {
-            this.remove(panelUsuario);
-        } catch (Exception ex) {
-        }
-    }
-
-    public void showLogin() {
-        eliminarPanel();
-        panelLogin = new PanelLogin(miBiblioteca, this);
-        this.getContentPane().add(panelLogin);
-        pack();
-    }
-
-    public void showRegister() {
-        eliminarPanel();
-        panelUsuario = new PanelUsuario(miBiblioteca,this);
-        getContentPane().add(panelUsuario);
-        pack();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

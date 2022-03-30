@@ -15,11 +15,13 @@ public class VntAplicacionControl extends MyJFrame {
 
     Biblioteca miBiblioteca;
     PanelPrestamo panelPrestamo; //Se crea en la ventana un panel del tipo buscado
+    PanelUsuarioH panelUsuario;
+
     /**
      * Creates new form VntAplicacionControl
      */
     public VntAplicacionControl(Biblioteca miBiblioteca) {
-        this.miBiblioteca=miBiblioteca;
+        this.miBiblioteca = miBiblioteca;
         centrar();//centra al spawnear
         initComponents();
     }
@@ -29,7 +31,7 @@ public class VntAplicacionControl extends MyJFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnuOpciones = new javax.swing.JMenu();
         mnuAltaUsuarios = new javax.swing.JMenuItem();
         mnuConsulta = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -44,10 +46,15 @@ public class VntAplicacionControl extends MyJFrame {
             }
         });
 
-        jMenu1.setText("Opciones");
+        mnuOpciones.setText("Opciones");
 
         mnuAltaUsuarios.setText("Alta de Usuarios");
-        jMenu1.add(mnuAltaUsuarios);
+        mnuAltaUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAltaUsuariosActionPerformed(evt);
+            }
+        });
+        mnuOpciones.add(mnuAltaUsuarios);
 
         mnuConsulta.setText("Préstamo de libros");
         mnuConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -55,12 +62,12 @@ public class VntAplicacionControl extends MyJFrame {
                 mnuConsultaActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuConsulta);
+        mnuOpciones.add(mnuConsulta);
 
         jMenuItem5.setText("Consulta libros prestados");
-        jMenu1.add(jMenuItem5);
+        mnuOpciones.add(jMenuItem5);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuOpciones);
 
         jMenu2.setText("Salir");
 
@@ -113,33 +120,50 @@ public class VntAplicacionControl extends MyJFrame {
     }//GEN-LAST:event_mnuDesconectarActionPerformed
 
     private void mnuConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultaActionPerformed
-        clean();//limpia de todos los paneles activos
-        panelPrestamo=new PanelPrestamo(miBiblioteca); //crea el panel prestamo
-        this.getContentPane().add(panelPrestamo);{//Lo añade al panel de la ventana
-        pack(); //ajusta tamaños
-    }
+        showPrestamo();
     }//GEN-LAST:event_mnuConsultaActionPerformed
 
+    private void mnuAltaUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAltaUsuariosActionPerformed
+        eliminarPanel();
+        panelUsuario = new PanelUsuarioH(miBiblioteca);
+        this.getContentPane().add(panelUsuario);
+        pack();
+    }//GEN-LAST:event_mnuAltaUsuariosActionPerformed
+
+    private void showPrestamo(){
+        eliminarPanel();//limpia de todos los paneles activos
+        panelPrestamo=new PanelPrestamo(miBiblioteca); //crea el panel prestamo
+        this.getContentPane().add(panelPrestamo);//Lo añade al panel de la ventana
+        pack(); //ajusta tamaños
+    }
+    
     /**
      * limpia de todos los paneles activos en la ventana
      */
-    private void clean(){
-        try{
+    private void eliminarPanel() {
+        try {
             this.remove(panelPrestamo);
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
+        }
+        try {
+            this.remove(panelUsuario);
+        } catch (Exception ex) {
+
         }
     }
     
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem mnuAltaUsuarios;
     private javax.swing.JMenuItem mnuConsulta;
     private javax.swing.JMenuItem mnuDesconectar;
+    private javax.swing.JMenu mnuOpciones;
     private javax.swing.JMenuItem mnuSalir;
     // End of variables declaration//GEN-END:variables
 }
