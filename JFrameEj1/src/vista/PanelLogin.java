@@ -148,8 +148,9 @@ public class PanelLogin extends javax.swing.JPanel {
         String pass = new String(pswPass.getPassword());
 
         if (miBiblioteca.confirmarUsuario(login, pass) != -1) {
-            JOptionPane.showMessageDialog(this, "Usuario correcto", "Success", JOptionPane.INFORMATION_MESSAGE);
-            lblError.setText("");
+            new VntAplicacionControl(miBiblioteca).setVisible(true);
+            ventana.dispose();
+            ventana.pack();
         } else {
             lblError.setText("Usuario o contraseña incorrectos");
             lblError.setForeground(Color.red);

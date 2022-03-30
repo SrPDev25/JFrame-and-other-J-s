@@ -24,6 +24,7 @@ public class VntInicio extends MyJFrame {
     public VntInicio() {
         miBiblioteca = new Biblioteca();
         miBiblioteca.createAdmin();
+        miBiblioteca.cargarLibros();
         centrar();
         initComponents();
         showLogin();

@@ -26,6 +26,14 @@ public class Biblioteca {
         usuarios.add(new Usuario("admin","admin","",""));
     }
     
+    public void cargarLibros(){
+        libros.add(new Libro(1567135, "La octava maravilla", "ElPepe", "Pinguino"));
+        libros.add(new Libro(1564535, "Que bueno", "Juan", "Pinguino"));
+        libros.add(new Libro(1562345, "Buscando a nemo", "Anonimo", "Delfin"));
+        libros.add(new Libro(1237135, "Aparentar ser cisne", "Anonimo", "Oso rojo"));
+        libros.add(new Libro(1567987, "Demasiada agua salada", "ElPepe", "MJ"));
+    }
+    
     /**
      * Busca por usuario
      * @param login
@@ -60,4 +68,13 @@ public class Biblioteca {
         usuarios.add(new Usuario(nombre, apellido, login, contrasenna));
     }
 
+    public ArrayList<Libro> getLibrosNoPrestados(){
+        ArrayList <Libro> librosNoPrestados=new ArrayList<>();
+        for(Libro i: libros){
+            if(!i.isPrestado()){
+                librosNoPrestados.add(i);
+            }
+        }
+        return librosNoPrestados;
+    }
 }
