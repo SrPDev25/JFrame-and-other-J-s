@@ -76,6 +76,11 @@ public class VtnOperaciones extends MyJFrame {
         mnuOperaciones.add(mnuAltaUsuario);
 
         mnuPrestamo.setText("Presamo de libro");
+        mnuPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrestamoActionPerformed(evt);
+            }
+        });
         mnuOperaciones.add(mnuPrestamo);
 
         jMenuBar1.add(mnuOperaciones);
@@ -136,12 +141,16 @@ public class VtnOperaciones extends MyJFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void mnuOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuOperacionesActionPerformed
-        eliminarPanel();
+       
+        
+    }//GEN-LAST:event_mnuOperacionesActionPerformed
+
+    private void mnuPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrestamoActionPerformed
+         eliminarPanel();
         panelPrestamo=new PanelPrestamo(miEmpresa);
         this.getContentPane().add(panelPrestamo);
         pack();
-        
-    }//GEN-LAST:event_mnuOperacionesActionPerformed
+    }//GEN-LAST:event_mnuPrestamoActionPerformed
 
     /**
      * METODO QUE EVITA QUE SALGAN 300 VENTANAS SEGUN VAYAMOS USANDO LA

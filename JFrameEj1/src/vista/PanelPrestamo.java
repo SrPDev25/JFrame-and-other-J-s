@@ -17,12 +17,14 @@ public class PanelPrestamo extends javax.swing.JPanel {
 
     Biblioteca miBiblioteca;
     DefaultListModel modeloLibros;
+    
     /** Creates new form PanelPrestamo */
     public PanelPrestamo(Biblioteca miBiblioteca) {
         initComponents();
         this.miBiblioteca=miBiblioteca;
-        /*modeloLibros=new DefaultListModel();
-        lstLibrosDisponibles.setModel(modeloLibros);*/
+        modeloLibros=new DefaultListModel();
+        lstLibrosDisponibles.setModel(modeloLibros);
+        cargarLibros();
     }
 
     private void cargarLibros(){

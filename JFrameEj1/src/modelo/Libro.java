@@ -55,13 +55,16 @@ public class Libro {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return titulo+" de "+autor;
+    }
+    
     public int getIsbn() {
         return isbn;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    
 
     public String getAutor() {
         return autor;
