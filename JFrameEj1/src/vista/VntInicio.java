@@ -63,7 +63,7 @@ public class VntInicio extends MyJFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        advertenciaCierre();
+        cierre();
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -95,7 +95,7 @@ public class VntInicio extends MyJFrame {
     }
 
     public void chargeVntControl() {
-        new VntAplicacionControl(miBiblioteca).setVisible(true);
+        new VtnOperaciones(miBiblioteca).setVisible(true);
         this.dispose();
         this.pack();
     }
