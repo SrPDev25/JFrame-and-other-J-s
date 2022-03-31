@@ -74,9 +74,15 @@ public class Libro {
         return editorial;
     }
 
+    public void setEstado(boolean estado) {
+        prestado=estado;
+    }
+
     public boolean isPrestado() {
         return prestado;
     }
+    
+    
     
     
     

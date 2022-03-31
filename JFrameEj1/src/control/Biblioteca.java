@@ -67,6 +67,15 @@ public class Biblioteca {
     public void grabarUsuario(String nombre, String apellido, String login, String contrasenna){
         usuarios.add(new Usuario(nombre, apellido, login, contrasenna));
     }
+    
+    /**
+     * Se presta o devuelve un libro
+     * @param libro el libro a devolver o prestar
+     * @param prestado se indica el nuevo estado true si esta prestado false si no
+     */
+    public void moverLibro(Libro libro,boolean prestado){
+        libros.get(libros.indexOf(libro)).setEstado(prestado);
+    }
 
     public ArrayList<Libro> getLibrosNoPrestados(){
         ArrayList <Libro> librosNoPrestados=new ArrayList<>();
@@ -77,4 +86,5 @@ public class Biblioteca {
         }
         return librosNoPrestados;
     }
+    
 }
