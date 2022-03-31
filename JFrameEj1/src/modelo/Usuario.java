@@ -48,6 +48,11 @@ public class Usuario {
         return contrasenna;
     }
 
+    public void recibir(Libro libroPrestado) {
+        this.librosPrestados.add(libroPrestado);
+    }
+
+    
     
     @Override
     public int hashCode() {

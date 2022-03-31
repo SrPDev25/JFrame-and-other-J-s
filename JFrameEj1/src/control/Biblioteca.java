@@ -87,4 +87,9 @@ public class Biblioteca {
         return librosNoPrestados;
     }
     
+    public void prestarLibro(String usuario,Libro libro){
+        usuarios.get(usuarios.indexOf(new Usuario(usuario))).recibir(libro);
+        libros.get(libros.indexOf(libro)).prestado();
+    }
+    
 }

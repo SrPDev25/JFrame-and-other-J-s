@@ -22,6 +22,7 @@ public class Libro {
         this.editorial = editorial;
     }
 
+    
     public void prestado(){
         prestado=true;
     }
