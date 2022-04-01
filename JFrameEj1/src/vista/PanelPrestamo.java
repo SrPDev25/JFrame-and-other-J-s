@@ -5,10 +5,10 @@
 package vista;
 
 import control.Biblioteca;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.Libro;
-import modelo.Usuario;
 
 /**
  *
@@ -129,9 +129,15 @@ public class PanelPrestamo extends javax.swing.JPanel {
         String user = txtUser.getText().trim();
         if (!user.equals("")) {
             if (miBiblioteca.existeUsuario(user)!=-1) {
-                Libro libroAPrestar = (Libro) modeloLibros.get(lstLibrosDisponibles.getSelectedIndex());
-                if (JOptionPane.showConfirmDialog(this, "El usuario " + user + " quiere adquirir el libro" + libroAPrestar, "Info", JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    miBiblioteca.prestarLibro(user, libroAPrestar);
+                ArrayList <Libro>libros=new ArrayList<>();
+               int [] indices= lstLibrosDisponibles.getSelectedIndices();
+               for( int i=0;i < indices.length; i++)
+               {
+                libros.add( (Libro)modeloLibros.getElementAt(indices[i]));
+               }
+              
+                if (JOptionPane.showConfirmDialog(this, listaLibrosPrestados(libros, user), "Info", JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    miBiblioteca.prestarLibro(user, libros);
                     cargarLibros();
                 }
             } else {
@@ -143,7 +149,9 @@ public class PanelPrestamo extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnPrestarActionPerformed
 
-
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPrestar;
     private javax.swing.JLabel jLabel1;
@@ -155,4 +163,13 @@ public class PanelPrestamo extends javax.swing.JPanel {
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 
+    
+    private String listaLibrosPrestados(ArrayList<Libro> libros, String usuario){
+        String lista= "El usuario "+usuario+" quiere adquirir:\n";
+        for(Libro i:libros){
+            lista=lista+"\t"+i+"\n";
+        }
+        
+        return lista;
+    }
 }

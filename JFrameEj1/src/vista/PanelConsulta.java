@@ -152,9 +152,13 @@ public class PanelConsulta extends javax.swing.JPanel {
             lblError.setText("Introduce un usuario");
             lblError.setForeground(Color.red);
         } else {
-
-            Libro libroDevuelto = (Libro) modelPrestamo.getElementAt(lstConsulta.getSelectedIndex());
-            miBilbioteca.devolverLibro(usuario, libroDevuelto);
+            int[] indexLibros=lstConsulta.getSelectedIndices();
+            ArrayList <Libro> librosDevuelta=new ArrayList<>();
+            for(int i:indexLibros){
+                librosDevuelta.add((Libro)modelPrestamo.getElementAt(i));
+            }
+            
+            miBilbioteca.devolverLibro(usuario, librosDevuelta);
             cargarLibros(usuario);
         }
     }//GEN-LAST:event_btnDevolucionActionPerformed

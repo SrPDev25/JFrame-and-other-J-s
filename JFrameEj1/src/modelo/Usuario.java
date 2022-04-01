@@ -48,12 +48,12 @@ public class Usuario {
         return contrasenna;
     }
 
-    public void recibir(Libro libroPrestado) {
-        this.librosPrestados.add(libroPrestado);
+    public void recibir(ArrayList<Libro> libroPrestado) {
+        this.librosPrestados.addAll(libroPrestado);
     }
 
-    public void devolver(Libro libroDevuelto){
-        this.librosPrestados.remove(libroDevuelto);
+    public void devolver(ArrayList<Libro> libroPrestado){
+        this.librosPrestados.removeAll(libroPrestado);
     }
     
     
