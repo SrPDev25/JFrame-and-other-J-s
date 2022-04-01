@@ -12,6 +12,7 @@ public class VtnOperaciones extends MyJFrame {
     Biblioteca miEmpresa;
     PanelUsuarioH panelAlta;
     PanelPrestamo panelPrestamo;
+    PanelConsulta panelConsulta;
     
 
     public VtnOperaciones(Biblioteca miEmpresa) {
@@ -39,6 +40,7 @@ public class VtnOperaciones extends MyJFrame {
         mnuOperaciones = new javax.swing.JMenu();
         mnuAltaUsuario = new javax.swing.JMenuItem();
         mnuPrestamo = new javax.swing.JMenuItem();
+        mnuConsulta = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenu();
         mnuDesconectar = new javax.swing.JMenuItem();
         mnuFin = new javax.swing.JMenuItem();
@@ -76,13 +78,21 @@ public class VtnOperaciones extends MyJFrame {
         });
         mnuOperaciones.add(mnuAltaUsuario);
 
-        mnuPrestamo.setText("Presamo de libro");
+        mnuPrestamo.setText("Prestamo de libro");
         mnuPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuPrestamoActionPerformed(evt);
             }
         });
         mnuOperaciones.add(mnuPrestamo);
+
+        mnuConsulta.setText("Consulta de libros");
+        mnuConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuConsultaActionPerformed(evt);
+            }
+        });
+        mnuOperaciones.add(mnuConsulta);
 
         jMenuBar1.add(mnuOperaciones);
 
@@ -153,6 +163,13 @@ public class VtnOperaciones extends MyJFrame {
         pack();
     }//GEN-LAST:event_mnuPrestamoActionPerformed
 
+    private void mnuConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultaActionPerformed
+        eliminarPanel();
+        panelConsulta=new PanelConsulta(miEmpresa);
+        this.getContentPane().add(panelConsulta);
+        pack();
+    }//GEN-LAST:event_mnuConsultaActionPerformed
+
     /**
      * METODO QUE EVITA QUE SALGAN 300 VENTANAS SEGUN VAYAMOS USANDO LA
      * APLICACION
@@ -169,6 +186,11 @@ public class VtnOperaciones extends MyJFrame {
         }catch(Exception ex){
             
         }
+        try{
+            this.remove(panelConsulta);
+        }catch(Exception ex){
+            
+        }
             
     }
 
@@ -179,6 +201,7 @@ public class VtnOperaciones extends MyJFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem mnuAltaUsuario;
+    private javax.swing.JMenuItem mnuConsulta;
     private javax.swing.JMenuItem mnuDesconectar;
     private javax.swing.JMenuItem mnuFin;
     private javax.swing.JMenu mnuOperaciones;

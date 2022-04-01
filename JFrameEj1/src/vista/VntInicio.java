@@ -78,6 +78,7 @@ public class VntInicio extends MyJFrame {
             this.remove(panelUsuario);
         } catch (Exception ex) {
         }
+
     }
 
     public void showLogin() {

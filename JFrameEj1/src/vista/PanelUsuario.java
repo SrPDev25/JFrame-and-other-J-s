@@ -266,7 +266,7 @@ public class PanelUsuario extends javax.swing.JPanel {
             allOK = false;
             lblAvisoUser.setText("Dato obligatorio");
             lblAvisoUser.setForeground(Color.red);
-        }else if (miBiblioteca.existeUsuario(user)) {
+        }else if (miBiblioteca.existeUsuario(user)!=-1) {
             allOK = false;
             lblAvisoUser.setText("Usuario ya existente");
             lblAvisoUser.setForeground(Color.red);

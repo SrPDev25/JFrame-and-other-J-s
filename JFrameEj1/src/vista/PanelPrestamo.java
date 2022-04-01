@@ -128,7 +128,7 @@ public class PanelPrestamo extends javax.swing.JPanel {
     private void btnPrestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestarActionPerformed
         String user = txtUser.getText().trim();
         if (!user.equals("")) {
-            if (miBiblioteca.existeUsuario(user)) {
+            if (miBiblioteca.existeUsuario(user)!=-1) {
                 Libro libroAPrestar = (Libro) modeloLibros.get(lstLibrosDisponibles.getSelectedIndex());
                 if (JOptionPane.showConfirmDialog(this, "El usuario " + user + " quiere adquirir el libro" + libroAPrestar, "Info", JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
                     miBiblioteca.prestarLibro(user, libroAPrestar);

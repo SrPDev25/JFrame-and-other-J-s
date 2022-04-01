@@ -35,7 +35,7 @@ public class Biblioteca {
     }
     
     /**
-     * Busca por usuario
+     * Valida usuario y contraseña
      * @param login
      * @param pass
      * @return 
@@ -56,12 +56,9 @@ public class Biblioteca {
      * @param login solo comprueba el usuario
      * @return devuelve true si ya existe
      */
-    public boolean existeUsuario(String login){
-        boolean existe=false;
-        if(usuarios.indexOf(new Usuario(login))!=-1){
-            existe=true;
-        }
-        return existe;
+    public int existeUsuario(String login){
+        int pos=usuarios.indexOf(new Usuario(login));
+        return pos;
     }
     
     public void grabarUsuario(String nombre, String apellido, String login, String contrasenna){
@@ -77,6 +74,8 @@ public class Biblioteca {
         libros.get(libros.indexOf(libro)).setEstado(prestado);
     }
 
+    
+    
     public ArrayList<Libro> getLibrosNoPrestados(){
         ArrayList <Libro> librosNoPrestados=new ArrayList<>();
         for(Libro i: libros){
@@ -87,9 +86,25 @@ public class Biblioteca {
         return librosNoPrestados;
     }
     
+    public ArrayList<Libro> getLibrosPrestados(String usuario){
+        ArrayList <Libro> librosPrestados=usuarios.get(existeUsuario(usuario)).getLibrosPrestados();
+        return librosPrestados;
+    }
+    
     public void prestarLibro(String usuario,Libro libro){
         usuarios.get(usuarios.indexOf(new Usuario(usuario))).recibir(libro);
         libros.get(libros.indexOf(libro)).prestado();
     }
+    
+    public void devolverLibro(String usuario, Libro libro){
+        usuarios.get(usuarios.indexOf(new Usuario(usuario))).devolver(libro);
+        libros.get(libros.indexOf(libro)).devuelto();
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+    
+    
     
 }

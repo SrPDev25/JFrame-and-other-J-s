@@ -45,10 +45,18 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuPrestamo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Presamo de libro"/>
+                <Property name="text" type="java.lang.String" value="Prestamo de libro"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuPrestamoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuConsulta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consulta de libros"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuConsultaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

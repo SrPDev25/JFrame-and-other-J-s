@@ -52,6 +52,9 @@ public class Usuario {
         this.librosPrestados.add(libroPrestado);
     }
 
+    public void devolver(Libro libroDevuelto){
+        this.librosPrestados.remove(libroDevuelto);
+    }
     
     
     @Override
