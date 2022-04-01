@@ -15,7 +15,6 @@ public class VntInicio extends MyJFrame {
 
     Biblioteca miBiblioteca;
     PanelLogin panelLogin;
-    PanelUsuario panelUsuario;
 
     /**
      * Creates new form VntInicio
@@ -74,10 +73,6 @@ public class VntInicio extends MyJFrame {
             this.remove(panelLogin);
         } catch (Exception ex) {
         }
-        try {
-            this.remove(panelUsuario);
-        } catch (Exception ex) {
-        }
 
     }
 
@@ -85,13 +80,6 @@ public class VntInicio extends MyJFrame {
         eliminarPanel();
         panelLogin = new PanelLogin(miBiblioteca, this);
         this.getContentPane().add(panelLogin);
-        pack();
-    }
-
-    public void showRegister() {
-        eliminarPanel();
-        panelUsuario = new PanelUsuario(miBiblioteca, this);
-        getContentPane().add(panelUsuario);
         pack();
     }
 

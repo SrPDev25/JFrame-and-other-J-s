@@ -38,7 +38,6 @@ public class PanelLogin extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         pswPass = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
-        btnAltaUsuario = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -76,13 +75,6 @@ public class PanelLogin extends javax.swing.JPanel {
             }
         });
 
-        btnAltaUsuario.setText("Alta Usuario");
-        btnAltaUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAltaUsuarioActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,16 +92,14 @@ public class PanelLogin extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnAltaUsuario)
-                                .addComponent(btnLogin)))
+                            .addComponent(btnLogin)
+                            .addGap(75, 75, 75))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtLogin)
                                 .addComponent(pswPass, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(41, 41, 41)))
+                            .addGap(130, 130, 130)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +119,7 @@ public class PanelLogin extends javax.swing.JPanel {
                         .addComponent(pswPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(28, 28, 28)
                     .addComponent(btnLogin)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(btnAltaUsuario)
-                    .addContainerGap(64, Short.MAX_VALUE)))
+                    .addContainerGap(108, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -155,10 +143,6 @@ public class PanelLogin extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnAltaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaUsuarioActionPerformed
-        ventana.showRegister();
-    }//GEN-LAST:event_btnAltaUsuarioActionPerformed
-
     private void txtLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoginKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             pswPass.requestFocusInWindow();
@@ -177,7 +161,6 @@ public class PanelLogin extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAltaUsuario;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
