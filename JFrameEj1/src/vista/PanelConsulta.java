@@ -25,7 +25,7 @@ public class PanelConsulta extends javax.swing.JPanel {
         this.miBilbioteca = miBilbioteca;
         modelPrestamo = new DefaultListModel();
         lstConsulta.setModel(modelPrestamo);
-        
+
     }
 
     private void cargarLibros(String user) {
@@ -133,23 +133,29 @@ public class PanelConsulta extends javax.swing.JPanel {
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
         String usuario = txtUsuario.getText().trim();
-        if (miBilbioteca.existeUsuario(usuario) != -1) {
-            cargarLibros(usuario);
-            this.usuario = usuario;
+        if (!usuario.equals("")) {
+            if (miBilbioteca.existeUsuario(usuario) != -1) {
+                cargarLibros(usuario);
+                this.usuario = usuario;
+            } else {
+                lblError.setText("Usuario no válido");
+                lblError.setForeground(Color.red);
+            }
         } else {
-            lblError.setText("Usuario no válido");
+            lblError.setText("Introduce un usuario");
             lblError.setForeground(Color.red);
         }
     }//GEN-LAST:event_btnConsultaActionPerformed
 
     private void btnDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionActionPerformed
-        if (!this.usuario.equals("")) {
-            Libro libroDevuelto=(Libro) modelPrestamo.getElementAt(lstConsulta.getSelectedIndex());
-            miBilbioteca.devolverLibro(usuario, libroDevuelto);
-            cargarLibros(usuario);
-        } else {
+        if (this.usuario == null || this.usuario.equals("")) {
             lblError.setText("Introduce un usuario");
             lblError.setForeground(Color.red);
+        } else {
+
+            Libro libroDevuelto = (Libro) modelPrestamo.getElementAt(lstConsulta.getSelectedIndex());
+            miBilbioteca.devolverLibro(usuario, libroDevuelto);
+            cargarLibros(usuario);
         }
     }//GEN-LAST:event_btnDevolucionActionPerformed
 
