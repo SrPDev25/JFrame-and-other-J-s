@@ -23,6 +23,7 @@ public class Cliente {
         this.nombre = nombre;
         this.dirección = dirección;
         this.Poblacion = Poblacion;
+        salasAlquiladas=new ArrayList<>();
     }
 
     public Cliente(String cif) {
@@ -32,6 +33,7 @@ public class Cliente {
     public ArrayList<Sala> getSalasAlquiladas() {
         return salasAlquiladas;
     }
+    
     
     
 }

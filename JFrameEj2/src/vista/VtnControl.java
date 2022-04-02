@@ -4,15 +4,20 @@
  */
 package vista;
 
+import control.Empresa;
+import control.MyJFrame;
+
 /**
  *
  * @author dam
  */
-public class VtnControl extends javax.swing.JFrame {
+public class VtnControl extends MyJFrame {
 
     PanelAltaClientes panelAlta;
+    Empresa miEmpresa;
     
     public VtnControl() {
+        miEmpresa=new Empresa();
         initComponents();
         
     }
@@ -29,12 +34,23 @@ public class VtnControl extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuAlta = new javax.swing.JMenuItem();
+        mnuAlquiler = new javax.swing.JMenuItem();
+        mnuConsulta = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        btnCerrar = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Gestión de alquileres");
+        setMinimumSize(new java.awt.Dimension(40, 40));
+        setPreferredSize(new java.awt.Dimension(250, 250));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.FlowLayout());
 
-        jMenu1.setText("File");
+        jMenu1.setText("Opciones");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
@@ -49,9 +65,29 @@ public class VtnControl extends javax.swing.JFrame {
         });
         jMenu1.add(mnuAlta);
 
+        mnuAlquiler.setText("Alquiler de salas");
+        mnuAlquiler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAlquilerActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuAlquiler);
+
+        mnuConsulta.setText("Consulta");
+        jMenu1.add(mnuConsulta);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Salir");
+
+        btnCerrar.setText("Cerrar aplicacion");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnCerrar);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -64,12 +100,31 @@ public class VtnControl extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void mnuAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAltaActionPerformed
-        // TODO add your handling code here:
-        panelAlta=new PanelAltaClientes();
+        cerrarPaneles();
+        panelAlta=new PanelAltaClientes(miEmpresa);
         this.getContentPane().add(panelAlta);
         pack();
     }//GEN-LAST:event_mnuAltaActionPerformed
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        cierre();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cierre();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void mnuAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlquilerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuAlquilerActionPerformed
+
+    private void cerrarPaneles(){
+        try{
+            this.remove(panelAlta);
+        }catch(Exception ex){
+            
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -106,9 +161,12 @@ public class VtnControl extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnCerrar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem mnuAlquiler;
     private javax.swing.JMenuItem mnuAlta;
+    private javax.swing.JMenuItem mnuConsulta;
     // End of variables declaration//GEN-END:variables
 }
