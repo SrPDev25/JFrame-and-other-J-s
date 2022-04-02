@@ -23,10 +23,10 @@ public class Empresa {
     public Empresa() {
         salas = new ArrayList<>();
         clientes = new ArrayList<>();
+        cargarSalas();
     }
 
     private void cargarSalas() {
-        salas.add(new Sala("Tenis", 4));
         salas.add(new Sala("Padel", 4));
         salas.add(new Sala("Furbol", 24));
         salas.add(new Sala("Fronton", 20));

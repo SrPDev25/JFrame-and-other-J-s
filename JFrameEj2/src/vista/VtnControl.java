@@ -14,6 +14,7 @@ import control.MyJFrame;
 public class VtnControl extends MyJFrame {
 
     PanelAltaClientes panelAlta;
+    PanelAlquilerSala panelAlquiler;
     Empresa miEmpresa;
     
     public VtnControl() {
@@ -41,8 +42,8 @@ public class VtnControl extends MyJFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Gestión de alquileres");
-        setMinimumSize(new java.awt.Dimension(40, 40));
-        setPreferredSize(new java.awt.Dimension(250, 250));
+        setMinimumSize(new java.awt.Dimension(200, 200));
+        setPreferredSize(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -115,12 +116,19 @@ public class VtnControl extends MyJFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void mnuAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlquilerActionPerformed
-        // TODO add your handling code here:
+        cerrarPaneles();
+        panelAlquiler=new PanelAlquilerSala(miEmpresa);
+        this.getContentPane().add(panelAlquiler);
+        pack();
     }//GEN-LAST:event_mnuAlquilerActionPerformed
 
     private void cerrarPaneles(){
         try{
             this.remove(panelAlta);
+        }catch(Exception ex){
+            
+        }try{
+            this.remove(panelAlquiler);
         }catch(Exception ex){
             
         }
