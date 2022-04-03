@@ -35,7 +35,7 @@ public class Sala {
     
     @Override
     public String toString(){
-        return nombre;
+        return nombre+" Cap:"+capacidad+" personas";
     }
 
     @Override
@@ -61,6 +61,15 @@ public class Sala {
         }
         return true;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+    
 
     
 }

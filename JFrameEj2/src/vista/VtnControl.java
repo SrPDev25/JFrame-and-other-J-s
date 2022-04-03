@@ -15,12 +15,13 @@ public class VtnControl extends MyJFrame {
 
     PanelAltaClientes panelAlta;
     PanelAlquilerSala panelAlquiler;
+    PanelConsulta panelConsulta;
     Empresa miEmpresa;
-    
+
     public VtnControl() {
-        miEmpresa=new Empresa();
+        miEmpresa = new Empresa();
         initComponents();
-        
+
     }
 
     /**
@@ -43,7 +44,6 @@ public class VtnControl extends MyJFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Gestión de alquileres");
         setMinimumSize(new java.awt.Dimension(200, 200));
-        setPreferredSize(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -75,6 +75,11 @@ public class VtnControl extends MyJFrame {
         jMenu1.add(mnuAlquiler);
 
         mnuConsulta.setText("Consulta");
+        mnuConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuConsultaActionPerformed(evt);
+            }
+        });
         jMenu1.add(mnuConsulta);
 
         jMenuBar1.add(jMenu1);
@@ -97,12 +102,12 @@ public class VtnControl extends MyJFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        
+
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void mnuAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAltaActionPerformed
         cerrarPaneles();
-        panelAlta=new PanelAltaClientes(miEmpresa);
+        panelAlta = new PanelAltaClientes(miEmpresa);
         this.getContentPane().add(panelAlta);
         pack();
     }//GEN-LAST:event_mnuAltaActionPerformed
@@ -117,22 +122,38 @@ public class VtnControl extends MyJFrame {
 
     private void mnuAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlquilerActionPerformed
         cerrarPaneles();
-        panelAlquiler=new PanelAlquilerSala(miEmpresa);
+        panelAlquiler = new PanelAlquilerSala(miEmpresa);
         this.getContentPane().add(panelAlquiler);
         pack();
     }//GEN-LAST:event_mnuAlquilerActionPerformed
 
-    private void cerrarPaneles(){
-        try{
+    private void mnuConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultaActionPerformed
+        cerrarPaneles();
+        panelConsulta=new PanelConsulta(miEmpresa);
+        this.getContentPane().add(panelConsulta);
+        pack();
+    }//GEN-LAST:event_mnuConsultaActionPerformed
+
+    private void cerrarPaneles() {
+        try {
             this.remove(panelAlta);
-        }catch(Exception ex){
-            
-        }try{
-            this.remove(panelAlquiler);
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
+        try {
+            this.remove(panelAlquiler);
+        } catch (Exception ex) {
+
+        }
+
+        try {
+            this.remove(panelConsulta);
+        } catch (Exception ex) {
+
+        }
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -150,13 +171,17 @@ public class VtnControl extends MyJFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VtnControl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnControl.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VtnControl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnControl.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VtnControl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnControl.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VtnControl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnControl.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

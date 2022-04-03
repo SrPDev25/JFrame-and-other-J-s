@@ -88,7 +88,7 @@ public class Empresa {
      * @return
      */
     public ArrayList<Sala> getSalasAlquiladas(String cif) {
-        return clientes.get(clientes.lastIndexOf(cif)).getSalasAlquiladas();
+        return clientes.get(clientes.indexOf(new Cliente(cif))).getSalasAlquiladas();
     }
 
     public ArrayList<Sala> getSalas() {

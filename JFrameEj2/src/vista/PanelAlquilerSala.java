@@ -7,6 +7,7 @@ package vista;
 import control.Empresa;
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import modelo.Sala;
 
 /**
@@ -40,6 +41,13 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         lblErrorCliente = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        lblErrorSala = new javax.swing.JLabel();
+
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jLabel1.setText("Alquiler de salas");
@@ -62,6 +70,8 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        lblErrorSala.setForeground(java.awt.Color.red);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -86,7 +96,9 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
                         .addComponent(lblErrorCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblErrorSala, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,36 +114,55 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
                 .addComponent(lblErrorCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblErrorSala, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(48, 48, 48))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_F1) {
-            modeloCombo.addAll(miEmpresa.getSalasDisponibles());
-        }
+        
     }//GEN-LAST:event_jComboBox1KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user = txtCliente.getText().trim();
         Sala sala = (Sala) modeloCombo.getElementAt(jComboBox1.getSelectedIndex());
         int pos = miEmpresa.existeCliente(user);
+        boolean correcto = true;
         switch (pos) {
             case -2:
                 lblErrorCliente.setText("Campo obligatorio");
+                correcto = false;
                 break;
             case -1:
                 lblErrorCliente.setText("Cliente no existe");
+                correcto = false;
                 break;
-            default:
-                miEmpresa.estadoSala(user, sala, Empresa.ALQUILAR);
-                modeloCombo.removeAllElements();
-                modeloCombo.addAll(miEmpresa.getSalasDisponibles());
-                break;
+
+        }
+
+        if (sala == null) {
+            lblErrorSala.setText("No se eligio sala, F1 para generarlas");
+            correcto = false;
+        }
+
+        if (correcto) {
+            miEmpresa.estadoSala(user, sala, Empresa.ALQUILAR);
+            modeloCombo.removeAllElements();
+            modeloCombo.addAll(miEmpresa.getSalasDisponibles());
+            JOptionPane.showMessageDialog(this, "Sala alquilada", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_F1) {
+            if (modeloCombo.getSize() == 0) {
+                modeloCombo.addAll(miEmpresa.getSalasDisponibles());
+            }
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -140,6 +171,7 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblErrorCliente;
+    private javax.swing.JLabel lblErrorSala;
     private javax.swing.JTextField txtCliente;
     // End of variables declaration//GEN-END:variables
 }
