@@ -22,6 +22,21 @@ public class Line {
         this.stops = stops;
     }
 
+    public ArrayList<Stop> getMidStops(){
+        ArrayList<Stop> midStops=new ArrayList<>();
+        for (int i = 1; i < stops.size()-1; i++) {
+            midStops.add(stops.get(i));
+        }
+        return midStops;
+    }
+    
+    public ArrayList<Stop> getCornerStops(){
+        ArrayList<Stop> cornerStops=new ArrayList<>();
+        cornerStops.add(stops.get(0));
+        cornerStops.add(stops.get(stops.size()-1));
+        return cornerStops;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

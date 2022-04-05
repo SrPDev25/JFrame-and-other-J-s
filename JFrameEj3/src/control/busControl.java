@@ -15,9 +15,9 @@ import model.User;
  */
 public class busControl {
 
-    ArrayList<Line> lines;
-    ArrayList<User> users;
-    ArrayList<Stop> stops;
+    private ArrayList<Line> lines;
+    private ArrayList<User> users;
+    private ArrayList<Stop> stops;
 
     public busControl() {
         lines = new ArrayList<>();
@@ -44,4 +44,18 @@ public class busControl {
         users.add(new User("1", "1", 1));
         users.add(new User("0", "0", 0));
     }
+
+    public ArrayList<Line> getLines() {
+        return lines;
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public ArrayList<Stop> getStops() {
+        return stops;
+    }
+    
+    
 }
