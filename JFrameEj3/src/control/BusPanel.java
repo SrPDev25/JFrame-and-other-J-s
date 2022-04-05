@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package control;
 
 import java.util.ArrayList;
@@ -13,13 +10,13 @@ import model.User;
  *
  * @author dam
  */
-public class busControl {
+public class BusPanel {
 
     private ArrayList<Line> lines;
     private ArrayList<User> users;
     private ArrayList<Stop> stops;
 
-    public busControl() {
+    public BusPanel() {
         lines = new ArrayList<>();
         users = new ArrayList<>();
         stops = new ArrayList<>();
@@ -43,6 +40,15 @@ public class busControl {
         users.add(new User("DN", "0000", 1));
         users.add(new User("1", "1", 1));
         users.add(new User("0", "0", 0));
+    }
+    
+    public User userExist(String user){
+        int pos=users.indexOf(user);
+        User userToReturn=null;
+        if(pos!=-1){
+            userToReturn=users.get(pos);
+        }
+        return userToReturn;
     }
 
     public ArrayList<Line> getLines() {

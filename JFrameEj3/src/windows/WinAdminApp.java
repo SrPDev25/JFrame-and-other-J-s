@@ -4,7 +4,7 @@
  */
 package windows;
 
-import control.BusControl;
+import control.BusPanel;
 import control.MyJFrame;
 
 /**
@@ -13,9 +13,9 @@ import control.MyJFrame;
  */
 public class WinAdminApp extends MyJFrame {
 
-    BusControl miControl;
+    BusPanel miControl;
     
-    public WinAdminApp(BusControl miControl) {
+    public WinAdminApp(BusPanel miControl) {
         this.miControl=miControl;
         initComponents();
         centrar();
