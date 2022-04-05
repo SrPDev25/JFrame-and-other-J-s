@@ -42,6 +42,10 @@ public class Line {
         return cornerStops;
     }
 
+    public String toString(){
+        return code +" "+denomination+": "+ getCornerStops().get(0)+"-->"+getCornerStops().get(1);
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

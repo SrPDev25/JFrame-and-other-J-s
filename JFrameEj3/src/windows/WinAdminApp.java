@@ -15,6 +15,7 @@ public class WinAdminApp extends MyJFrame {
 
     BusControlC miControl;
     PanelLineRegistration panelRegistration;
+    PanelLineRemove panelRemove;
     
     public WinAdminApp(BusControlC miControl) {
         this.miControl=miControl;
@@ -34,6 +35,7 @@ public class WinAdminApp extends MyJFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuRegistration = new javax.swing.JMenuItem();
+        mnuRemove = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuDisconnect = new javax.swing.JMenuItem();
         mnuExit = new javax.swing.JMenuItem();
@@ -56,6 +58,14 @@ public class WinAdminApp extends MyJFrame {
             }
         });
         jMenu1.add(mnuRegistration);
+
+        mnuRemove.setText("Eliminar linea");
+        mnuRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRemoveActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuRemove);
 
         jMenuBar1.add(jMenu1);
 
@@ -105,9 +115,20 @@ public class WinAdminApp extends MyJFrame {
         pack();
     }//GEN-LAST:event_mnuRegistrationActionPerformed
 
+    private void mnuRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRemoveActionPerformed
+        clean();
+        panelRemove=new PanelLineRemove(miControl);
+        this.getContentPane().add(panelRemove);
+        pack();
+    }//GEN-LAST:event_mnuRemoveActionPerformed
+
     private void clean(){
         try{
             this.remove(panelRegistration);
+        }catch(Exception ex){
+        }
+        try{
+            this.remove(panelRemove);
         }catch(Exception ex){
         }
     }
@@ -120,5 +141,6 @@ public class WinAdminApp extends MyJFrame {
     private javax.swing.JMenuItem mnuDisconnect;
     private javax.swing.JMenuItem mnuExit;
     private javax.swing.JMenuItem mnuRegistration;
+    private javax.swing.JMenuItem mnuRemove;
     // End of variables declaration//GEN-END:variables
 }
