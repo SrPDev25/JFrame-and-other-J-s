@@ -27,6 +27,12 @@ public class User {
         this.permisions = permisions;
     }
 
+    public User(String user) {
+        this.user = user;
+    }
+    
+    
+
     public String getUser() {
         return user;
     }
