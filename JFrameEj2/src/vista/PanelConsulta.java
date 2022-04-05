@@ -117,8 +117,11 @@ public class PanelConsulta extends javax.swing.JPanel {
         } else if (nif.equals("")) {
             lblError.setText("No se introdujo ningun dato");
         } else {
+            lblError.setText("");
             ArrayList<Sala> salasAlquiladas = miEmpresa.getSalasAlquiladas(nif);
-
+            for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+                modeloTabla.removeRow(0);
+            }
             for (Sala s : salasAlquiladas) {
                 Vector v = new Vector();
                 v.add(s.getNombre());

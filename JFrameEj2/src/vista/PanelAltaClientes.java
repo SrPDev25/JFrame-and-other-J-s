@@ -167,10 +167,11 @@ public class PanelAltaClientes extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(lblErrorDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblErrorPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblErrorPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlta)
@@ -192,18 +193,26 @@ public class PanelAltaClientes extends javax.swing.JPanel {
         } else if (miEmpresa.existeCliente(cif) != -1) {
             lblErrorCif.setText("Cliente ya existe");
             isError = true;
+        }else{
+            lblErrorCif.setText("");
         }
         if (nombre.equals("")) {
             lblErrorNombre.setText(error);
             isError = true;
+        }else{
+            lblErrorNombre.setText("");
         }
         if (direccion.equals("")) {
             lblErrorDireccion.setText(error);
             isError = true;
+        }else{
+            lblErrorDireccion.setText("");
         }
         if (poblacion.equals("")) {
             lblErrorPoblacion.setText(error);
             isError = true;
+        }else{
+            lblErrorPoblacion.setText("");
         }
 
         if (!isError) {

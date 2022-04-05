@@ -53,6 +53,11 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
         jLabel1.setText("Alquiler de salas");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jComboBox1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jComboBox1KeyPressed(evt);
@@ -123,7 +128,11 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyPressed
-        
+        if (evt.getKeyCode() == KeyEvent.VK_F1) {
+            if (modeloCombo.getSize() == 0) {
+                modeloCombo.addAll(miEmpresa.getSalasDisponibles());
+            }
+        }
     }//GEN-LAST:event_jComboBox1KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -140,12 +149,18 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
                 lblErrorCliente.setText("Cliente no existe");
                 correcto = false;
                 break;
+            default:
+                lblErrorCliente.setText("");
+                
 
         }
 
         if (sala == null) {
             lblErrorSala.setText("No se eligio sala, F1 para generarlas");
             correcto = false;
+        }else{
+            lblErrorSala.setText("");
+            
         }
 
         if (correcto) {
@@ -157,12 +172,12 @@ public class PanelAlquilerSala extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_F1) {
-            if (modeloCombo.getSize() == 0) {
-                modeloCombo.addAll(miEmpresa.getSalasDisponibles());
-            }
-        }
+        
     }//GEN-LAST:event_formKeyPressed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
