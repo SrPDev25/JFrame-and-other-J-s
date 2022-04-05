@@ -41,7 +41,7 @@ public class Line {
         cornerStops.add(stops.get(stops.size()-1));
         return cornerStops;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -66,6 +66,8 @@ public class Line {
         }
         return true;
     }
+    
+    
 
     public String getCode() {
         return code;
