@@ -42,6 +42,7 @@ public class Line {
         return cornerStops;
     }
 
+    @Override
     public String toString(){
         return code +" "+denomination+": "+ getCornerStops().get(0)+"-->"+getCornerStops().get(1);
     }
