@@ -4,7 +4,7 @@
  */
 package windows;
 
-import control.BusPanel;
+import control.BusControlC;
 import control.MyJFrame;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -16,17 +16,17 @@ import model.User;
  */
 public class WinLogin extends MyJFrame {
 
-    BusPanel miControl;
+    BusControlC miControl;
 
     public WinLogin() {
-        miControl = new BusPanel();
+        miControl = new BusControlC();
         miControl.chargeDefaultUsers();
         miControl.chargeStops();
         initComponents();
         centrar();
     }
 
-    public WinLogin(BusPanel miControl) {
+    public WinLogin(BusControlC miControl) {
         this.miControl = miControl;
         initComponents();
         centrar();

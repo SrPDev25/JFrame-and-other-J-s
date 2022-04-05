@@ -4,7 +4,7 @@
  */
 package windows;
 
-import control.BusPanel;
+import control.BusControlC;
 import control.MyJFrame;
 
 /**
@@ -13,9 +13,9 @@ import control.MyJFrame;
  */
 public class WinUserApp extends MyJFrame {
 
-    BusPanel miControl;
+    BusControlC miControl;
     
-    public WinUserApp(BusPanel miControl) {
+    public WinUserApp(BusControlC miControl) {
         this.miControl=miControl;
         initComponents();
         centrar();
@@ -36,7 +36,12 @@ public class WinUserApp extends MyJFrame {
         mnuDisconnect = new javax.swing.JMenuItem();
         mnuExit = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jMenu1.setText("Options");
         jMenuBar1.add(jMenu1);
@@ -86,6 +91,10 @@ public class WinUserApp extends MyJFrame {
         dispose();
         pack();
     }//GEN-LAST:event_mnuDisconnectActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cierre();
+    }//GEN-LAST:event_formWindowClosing
 
     
 

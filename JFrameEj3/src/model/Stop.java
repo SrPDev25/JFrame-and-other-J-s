@@ -18,7 +18,7 @@ public class Stop {
         this.code = code;
         this.denomination = denomination;
     }
-    
+        
     @Override
     public String toString(){
         return code+" "+denomination;

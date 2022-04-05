@@ -4,7 +4,7 @@
  */
 package windows;
 
-import control.BusPanel;
+import control.BusControlC;
 import control.MyJFrame;
 
 /**
@@ -13,9 +13,10 @@ import control.MyJFrame;
  */
 public class WinAdminApp extends MyJFrame {
 
-    BusPanel miControl;
+    BusControlC miControl;
+    PanelLineRegistration panelRegistration;
     
-    public WinAdminApp(BusPanel miControl) {
+    public WinAdminApp(BusControlC miControl) {
         this.miControl=miControl;
         initComponents();
         centrar();
@@ -32,13 +33,30 @@ public class WinAdminApp extends MyJFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mnuRegistration = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuDisconnect = new javax.swing.JMenuItem();
         mnuExit = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(300, 300));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+        getContentPane().setLayout(new java.awt.FlowLayout());
 
         jMenu1.setText("Options");
+
+        mnuRegistration.setText("Registration");
+        mnuRegistration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRegistrationActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuRegistration);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Exit");
@@ -63,17 +81,6 @@ public class WinAdminApp extends MyJFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -87,6 +94,23 @@ public class WinAdminApp extends MyJFrame {
         pack();
     }//GEN-LAST:event_mnuDisconnectActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cierre();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void mnuRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrationActionPerformed
+        clean();
+        panelRegistration=new PanelLineRegistration(miControl);
+        this.getContentPane().add(panelRegistration);
+        pack();
+    }//GEN-LAST:event_mnuRegistrationActionPerformed
+
+    private void clean(){
+        try{
+            this.remove(panelRegistration);
+        }catch(Exception ex){
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -95,5 +119,6 @@ public class WinAdminApp extends MyJFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mnuDisconnect;
     private javax.swing.JMenuItem mnuExit;
+    private javax.swing.JMenuItem mnuRegistration;
     // End of variables declaration//GEN-END:variables
 }

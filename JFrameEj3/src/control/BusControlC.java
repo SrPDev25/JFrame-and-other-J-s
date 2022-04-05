@@ -10,13 +10,13 @@ import model.User;
  *
  * @author dam
  */
-public class BusPanel {
+public class BusControlC {
 
     private ArrayList<Line> lines;
     private ArrayList<User> users;
     private ArrayList<Stop> stops;
 
-    public BusPanel() {
+    public BusControlC() {
         lines = new ArrayList<>();
         users = new ArrayList<>();
         stops = new ArrayList<>();
@@ -43,7 +43,7 @@ public class BusPanel {
     }
     
     public User userExist(String user){
-        int pos=users.indexOf(user);
+        int pos=users.indexOf(new User(user));
         User userToReturn=null;
         if(pos!=-1){
             userToReturn=users.get(pos);
