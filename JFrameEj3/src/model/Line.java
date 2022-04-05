@@ -22,6 +22,11 @@ public class Line {
         this.stops = stops;
     }
 
+    public Line(String code) {
+        this.code = code;
+    }
+
+    
     public ArrayList<Stop> getMidStops(){
         ArrayList<Stop> midStops=new ArrayList<>();
         for (int i = 1; i < stops.size()-1; i++) {
