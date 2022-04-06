@@ -314,7 +314,7 @@ public class PanelLineRegistration extends javax.swing.JPanel {
 
         if (correct) {
             for (int i = 0; i < modelAddStops.size(); i++) {
-                stops.add((Stop) modelAddStops.getElementAt(0));
+                stops.add((Stop) modelAddStops.getElementAt(i));
             }
             miControl.getLines().add(new Line(code, denomination, stops));
             JOptionPane.showMessageDialog(this, "Linea creada", "Informacion", JOptionPane.INFORMATION_MESSAGE);

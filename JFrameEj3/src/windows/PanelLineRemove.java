@@ -6,6 +6,7 @@ package windows;
 
 import control.BusControlC;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -104,8 +105,10 @@ public class PanelLineRemove extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        miControl.getLines().remove(modelCombo.getSelectedItem());
-        chargeLines();
+        if (JOptionPane.showConfirmDialog(this, "Esta seguro que quiere eliminar la línea" + modelCombo.getSelectedItem(), "Aviso", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+            miControl.getLines().remove(modelCombo.getSelectedItem());
+            chargeLines();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
