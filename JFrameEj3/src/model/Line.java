@@ -47,7 +47,7 @@ public class Line {
     @Override
     public String toString(){
         ArrayList<Stop> corner=getCornerStops();
-        return code +" "+denomination+": "+ corner.get(0)+"-->"+corner.get(1);
+        return code +" "+denomination;
     }
     
     @Override

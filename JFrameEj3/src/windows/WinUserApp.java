@@ -14,6 +14,7 @@ import control.MyJFrame;
 public class WinUserApp extends MyJFrame {
 
     BusControlC miControl;
+    PanelSeeLines panelSeeLines;
     
     public WinUserApp(BusControlC miControl) {
         this.miControl=miControl;
@@ -32,18 +33,30 @@ public class WinUserApp extends MyJFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mnuSeeLines = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuDisconnect = new javax.swing.JMenuItem();
         mnuExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(300, 300));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.FlowLayout());
 
         jMenu1.setText("Options");
+
+        mnuSeeLines.setText("Consulta");
+        mnuSeeLines.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSeeLinesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuSeeLines);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Exit");
@@ -68,17 +81,6 @@ public class WinUserApp extends MyJFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -96,6 +98,20 @@ public class WinUserApp extends MyJFrame {
         cierre();
     }//GEN-LAST:event_formWindowClosing
 
+    private void mnuSeeLinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSeeLinesActionPerformed
+        clean();
+        panelSeeLines=new PanelSeeLines(miControl);
+        this.getContentPane().add(panelSeeLines);
+        pack();
+    }//GEN-LAST:event_mnuSeeLinesActionPerformed
+
+    private void clean(){
+        try{
+            this.remove(panelSeeLines);
+        }catch(Exception ex){
+            
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -104,5 +120,6 @@ public class WinUserApp extends MyJFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mnuDisconnect;
     private javax.swing.JMenuItem mnuExit;
+    private javax.swing.JMenuItem mnuSeeLines;
     // End of variables declaration//GEN-END:variables
 }

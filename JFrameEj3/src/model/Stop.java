@@ -11,8 +11,8 @@ import java.util.Objects;
  * @author dam
  */
 public class Stop {
-    String code; //codigo unico
-    String denomination;
+    private String code; //codigo unico
+    private String denomination;
 
     public Stop(String code, String denomination) {
         this.code = code;
@@ -48,6 +48,15 @@ public class Stop {
         }
         return true;
     }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getDenomination() {
+        return denomination;
+    }
+    
     
     
 }
