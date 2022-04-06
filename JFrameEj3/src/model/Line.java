@@ -14,12 +14,14 @@ import java.util.Objects;
 public class Line {
     private String code; //Codigo unico
     private String denomination;
+    private int frequency;
     private ArrayList <Stop> stops; //No se pueden repetir
 
-    public Line(String code, String denomination, ArrayList<Stop> stops) {
+    public Line(String code, String denomination,int frequency, ArrayList<Stop> stops) {
         this.code = code;
         this.denomination = denomination;
         this.stops = stops;
+        this.frequency=frequency;
     }
 
     public Line(String code) {
@@ -72,9 +74,11 @@ public class Line {
         }
         return true;
     }
-    
-    
 
+    public int getFrequency() {
+        return frequency;
+    }
+    
     public String getCode() {
         return code;
     }
