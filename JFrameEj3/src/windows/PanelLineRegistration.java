@@ -272,6 +272,7 @@ public class PanelLineRegistration extends javax.swing.JPanel {
             modelAddStops.addAll(stops);
 
         }
+        lstAddStops.setSelectedIndex(lstPos+1);
     }//GEN-LAST:event_btnDownActionPerformed
 
     private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
@@ -298,7 +299,7 @@ public class PanelLineRegistration extends javax.swing.JPanel {
             modelAddStops.removeAllElements();
             modelAddStops.addAll(stops);
         }
-
+        lstAddStops.setSelectedIndex(lstPos-1);
     }//GEN-LAST:event_btnUpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
