@@ -6,6 +6,9 @@ package view;
 
 import control.Mail;
 import java.awt.event.KeyEvent;
+import javax.swing.ButtonModel;
+import javax.swing.DefaultButtonModel;
+import model.User;
 
 /**
  *
@@ -14,6 +17,7 @@ import java.awt.event.KeyEvent;
 public class PanelSignUp extends javax.swing.JPanel {
 
     Mail myMail;
+
     
     public PanelSignUp(Mail myMail) {
         initComponents();
@@ -29,7 +33,7 @@ public class PanelSignUp extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        radioGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -40,9 +44,12 @@ public class PanelSignUp extends javax.swing.JPanel {
         txtDirection = new javax.swing.JTextField();
         radioAdmin = new javax.swing.JRadioButton();
         radioStandart = new javax.swing.JRadioButton();
-        lblError = new javax.swing.JLabel();
+        lblErrorUser = new javax.swing.JLabel();
+        lblErrorPass = new javax.swing.JLabel();
+        lblErrorDirection = new javax.swing.JLabel();
         btnSignUp = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        lblErrorLevel = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Usuario");
@@ -77,21 +84,22 @@ public class PanelSignUp extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(radioAdmin);
+        radioGroup.add(radioAdmin);
         radioAdmin.setText("Admin");
-        radioAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                radioAdminKeyPressed(evt);
-            }
-        });
 
-        buttonGroup1.add(radioStandart);
+        radioGroup.add(radioStandart);
         radioStandart.setText("Standart");
         radioStandart.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 radioStandartKeyPressed(evt);
             }
         });
+
+        lblErrorUser.setForeground(java.awt.Color.red);
+
+        lblErrorPass.setForeground(java.awt.Color.red);
+
+        lblErrorDirection.setForeground(java.awt.Color.red);
 
         btnSignUp.setText("Registrar");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +109,13 @@ public class PanelSignUp extends javax.swing.JPanel {
         });
 
         btnCancel.setText("Cancelar");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
+        lblErrorLevel.setForeground(java.awt.Color.red);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,69 +123,85 @@ public class PanelSignUp extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(64, 64, 64)
+                            .addComponent(jLabel4)
+                            .addGap(22, 22, 22)
+                            .addComponent(txtDirection, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(jLabel3)
+                            .addGap(6, 6, 6)
+                            .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(radioAdmin)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(radioStandart)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5)))
+                        .addGap(95, 95, 95)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(lblErrorUser, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(lblErrorPass, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(radioAdmin)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(radioStandart))
-                                .addComponent(txtUser)
-                                .addComponent(txtPass)
-                                .addComponent(txtDirection, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                            .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                            .addComponent(lblErrorLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblErrorDirection, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(lblErrorUser, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(lblErrorPass, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtDirection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblErrorDirection, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(radioAdmin)
-                    .addComponent(radioStandart))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addComponent(radioStandart)
+                    .addComponent(radioAdmin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblErrorLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -198,22 +229,6 @@ public class PanelSignUp extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtDirectionKeyPressed
 
-    private void radioAdminKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_radioAdminKeyPressed
-        switch (evt.getKeyCode()) {
-            case KeyEvent.VK_ENTER:
-                btnSignUp.doClick();
-                break;
-            case KeyEvent.VK_RIGHT:
-                radioStandart.requestFocus();
-                break;
-            case KeyEvent.VK_ESCAPE:
-                radioAdmin.doClick();
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_radioAdminKeyPressed
-
     private void radioStandartKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_radioStandartKeyPressed
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_ENTER:
@@ -234,23 +249,80 @@ public class PanelSignUp extends javax.swing.JPanel {
         String user=txtUser.getText().trim();
         String pass=txtPass.getText();
         String direction=txtDirection.getText().trim();
+        int lvlUser=0;
+        boolean correct=true;
+        
+        if (user.equals("")) {
+            lblErrorUser.setText("Campo obligatorio");
+            correct=false;
+        }else if(myMail.userExist(user)!=-1){
+            correct=false;
+            lblErrorUser.setText("Usuario existente");
+        }else{
+            lblErrorUser.setText("");
+        }
         
         
+        if (pass.equals("")) {
+            correct=false;
+            lblErrorPass.setText("Campo obligatorio");
+        }else{
+            lblErrorPass.setText("");
+        }
         
+        if (direction.equals("")) {
+            lblErrorDirection.setText("Campo obligatorio");
+            correct=false;
+        }else if(myMail.getUsers().indexOf(new User(direction))!=-1){
+            lblErrorDirection.setText("Dirección ya utilizada");
+            correct=false;
+        }else{
+            lblErrorDirection.setText("");
+        }
+        
+        if (radioAdmin.isSelected()) {
+            lvlUser=User.ADMIN;
+            lblErrorLevel.setText("");
+        }else if (radioStandart.isSelected()) {
+            lvlUser=User.USER;
+            lblErrorLevel.setText("");
+        }else{
+            lblErrorLevel.setText("Campo obligatorio");
+            correct=false;
+        }
+        
+        if (correct) {
+            myMail.getUsers().add(new User(pass, pass, lvlUser, direction));
+            clean();
+        }
     }//GEN-LAST:event_btnSignUpActionPerformed
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        clean();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void clean(){
+        txtDirection.setText("");
+        txtPass.setText("");
+        txtUser.setText("");
+        radioAdmin.setSelected(false);
+        radioStandart.setSelected(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSignUp;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblErrorDirection;
+    private javax.swing.JLabel lblErrorLevel;
+    private javax.swing.JLabel lblErrorPass;
+    private javax.swing.JLabel lblErrorUser;
     private javax.swing.JRadioButton radioAdmin;
+    private javax.swing.ButtonGroup radioGroup;
     private javax.swing.JRadioButton radioStandart;
     private javax.swing.JTextField txtDirection;
     private javax.swing.JTextField txtPass;

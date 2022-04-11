@@ -19,16 +19,14 @@ public class WinControl extends MyJFrame {
 
     public WinControl() {
     }
-    
-    
-    
+
     public WinControl(Mail myMail, int permission) {
         initComponents();
-        this.myMail=myMail;
-        if(permission==User.USER){
+        this.myMail = myMail;
+        if (permission == User.USER) {//Si es un usuario no puede usar estos paneles
             mnuSingUp.setVisible(false);
         }
-        
+
     }
 
     /**
@@ -106,24 +104,25 @@ public class WinControl extends MyJFrame {
     }//GEN-LAST:event_mnuDisconnectActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        //Cierra el programa con comprobación
         cerrar();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void mnuSingUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSingUpActionPerformed
         clean();
-        panelSignUp=new PanelSignUp(myMail);
+        panelSignUp = new PanelSignUp(myMail);
         this.getContentPane().add(panelSignUp);
         pack();
     }//GEN-LAST:event_mnuSingUpActionPerformed
 
-    private void clean(){
-        try{
+    private void clean() {
+        try {
             this.remove(panelSignUp);
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
