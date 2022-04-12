@@ -36,7 +36,6 @@ public class PanelDemolish extends javax.swing.JPanel {
         } else {
             lblError.setText("");
         }
-
     }
 
     /**
