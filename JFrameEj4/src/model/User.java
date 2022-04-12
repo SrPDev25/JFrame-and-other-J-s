@@ -55,6 +55,11 @@ public class User {
     public ArrayList<Message> getMailbox() {
         return mailbox;
     }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+    
     
     public String toString(){
         return login+" "+direction;

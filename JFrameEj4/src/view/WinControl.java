@@ -6,6 +6,7 @@ package view;
 
 import control.Mail;
 import control.MyJFrame;
+import javax.swing.JOptionPane;
 import model.User;
 
 /**
@@ -18,6 +19,7 @@ public class WinControl extends MyJFrame {
     PanelSignUp panelSignUp;
     PanelDemolish panelDemolish;
     PanelConsult panelConsult;
+    PanelChangePass panelChangePass;
     User activeUser;
 
     public WinControl() {
@@ -26,7 +28,7 @@ public class WinControl extends MyJFrame {
     public WinControl(Mail myMail, User user) {
         initComponents();
         this.myMail = myMail;
-        activeUser=user;
+        activeUser = user;
         if (user.getPermission() == User.USER) {//Si es un usuario no puede usar estos paneles
             mnuSingUp.setVisible(false);
             mnuDemolish.setVisible(false);
@@ -46,6 +48,7 @@ public class WinControl extends MyJFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mnuChangePass = new javax.swing.JMenuItem();
         mnuSingUp = new javax.swing.JMenuItem();
         mnuDemolish = new javax.swing.JMenuItem();
         mnuConsult = new javax.swing.JMenuItem();
@@ -69,6 +72,14 @@ public class WinControl extends MyJFrame {
                 jMenu1ActionPerformed(evt);
             }
         });
+
+        mnuChangePass.setText("Cambiar contraseña");
+        mnuChangePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuChangePassActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuChangePass);
 
         mnuSingUp.setText("Dar de alta");
         mnuSingUp.addActionListener(new java.awt.event.ActionListener() {
@@ -145,13 +156,13 @@ public class WinControl extends MyJFrame {
 
     private void mnuDemolishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDemolishActionPerformed
         clean();
-        panelDemolish=new PanelDemolish(myMail, activeUser);
+        panelDemolish = new PanelDemolish(myMail, activeUser);
         this.getContentPane().add(panelDemolish);
         pack();
     }//GEN-LAST:event_mnuDemolishActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        
+
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void mnuConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultActionPerformed
@@ -160,6 +171,32 @@ public class WinControl extends MyJFrame {
         this.getContentPane().add(panelConsult);
         pack();
     }//GEN-LAST:event_mnuConsultActionPerformed
+
+    private void mnuChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuChangePassActionPerformed
+        //Comprueba si es un usuario y luego si tiene la contraseña del mismo
+        boolean permission = false;
+        if (activeUser.getPermission() == User.USER) {
+            if (JOptionPane.showInputDialog(this,
+                    "Necesaria contraseaña para continuar",
+                    "Confirmar identidad", JOptionPane.INFORMATION_MESSAGE)
+                    .equals(activeUser.getPass())) {
+                permission = true;
+            }else{
+                JOptionPane.showMessageDialog(this, "Contraseña incorrecta",
+                        "Error",JOptionPane.WARNING_MESSAGE);
+            }
+            
+        } else {
+            permission = true;
+        }
+
+        if (permission) {
+            clean();
+            panelChangePass=new PanelChangePass(activeUser, myMail);
+            this.getContentPane().add(panelChangePass);
+            pack();
+        }
+    }//GEN-LAST:event_mnuChangePassActionPerformed
 
     private void clean() {
         try {
@@ -177,6 +214,11 @@ public class WinControl extends MyJFrame {
         } catch (Exception ex) {
 
         }
+        try {
+            this.remove(panelChangePass);
+        } catch (Exception ex) {
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,6 +226,7 @@ public class WinControl extends MyJFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem mnuChangePass;
     private javax.swing.JMenuItem mnuConsult;
     private javax.swing.JMenuItem mnuDemolish;
     private javax.swing.JMenuItem mnuDisconnect;
