@@ -146,7 +146,7 @@ public class WinLoging extends MyJFrame {
         String pass=new String(pswPass.getPassword());
         int pos=myMail.userExist(user);
         if(pos!=-1&&myMail.getUsers().get(pos).getPass().equals(pass)){
-            new WinControl(myMail,myMail.getUsers().get(pos).getPermission()).setVisible(true);
+            new WinControl(myMail,myMail.getUsers().get(pos)).setVisible(true);
             dispose();
             pack();
         }else{

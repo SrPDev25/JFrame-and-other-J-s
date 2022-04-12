@@ -16,15 +16,19 @@ public class WinControl extends MyJFrame {
 
     Mail myMail;
     PanelSignUp panelSignUp;
+    PanelDemolish panelDemolish;
+    User activeUser;
 
     public WinControl() {
     }
 
-    public WinControl(Mail myMail, int permission) {
+    public WinControl(Mail myMail, User user) {
         initComponents();
         this.myMail = myMail;
-        if (permission == User.USER) {//Si es un usuario no puede usar estos paneles
+        activeUser=user;
+        if (user.getPermission() == User.USER) {//Si es un usuario no puede usar estos paneles
             mnuSingUp.setVisible(false);
+            mnuDemolish.setVisible(false);
         }
 
     }
@@ -41,6 +45,7 @@ public class WinControl extends MyJFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuSingUp = new javax.swing.JMenuItem();
+        mnuDemolish = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuDisconnect = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -48,7 +53,6 @@ public class WinControl extends MyJFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Correo");
         setMinimumSize(new java.awt.Dimension(400, 400));
-        setPreferredSize(new java.awt.Dimension(400, 200));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -65,6 +69,14 @@ public class WinControl extends MyJFrame {
             }
         });
         jMenu1.add(mnuSingUp);
+
+        mnuDemolish.setText("Dar de baja");
+        mnuDemolish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDemolishActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuDemolish);
 
         jMenuBar1.add(jMenu1);
 
@@ -115,9 +127,21 @@ public class WinControl extends MyJFrame {
         pack();
     }//GEN-LAST:event_mnuSingUpActionPerformed
 
+    private void mnuDemolishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDemolishActionPerformed
+        clean();
+        panelDemolish=new PanelDemolish(myMail, activeUser);
+        this.getContentPane().add(panelDemolish);
+        pack();
+    }//GEN-LAST:event_mnuDemolishActionPerformed
+
     private void clean() {
         try {
             this.remove(panelSignUp);
+        } catch (Exception ex) {
+
+        }
+        try {
+            this.remove(panelDemolish);
         } catch (Exception ex) {
 
         }
@@ -128,6 +152,7 @@ public class WinControl extends MyJFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem mnuDemolish;
     private javax.swing.JMenuItem mnuDisconnect;
     private javax.swing.JMenuItem mnuSingUp;
     // End of variables declaration//GEN-END:variables
