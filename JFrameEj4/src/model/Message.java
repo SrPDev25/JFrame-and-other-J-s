@@ -18,12 +18,11 @@ public class Message {
     String transmitterDirection;
     boolean read;
 
-    public Message(String matter, Fecha date, String content, String transmitterDirection, boolean read) {
+    public Message(String matter, Fecha date, String content, String transmitterDirection) {
         this.matter = matter;
         this.date = date;
         this.content = content;
         this.transmitterDirection = transmitterDirection;
-        this.read = read;
     }
 
     public String getMatter() {
