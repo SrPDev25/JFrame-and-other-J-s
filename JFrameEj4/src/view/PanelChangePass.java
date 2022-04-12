@@ -30,6 +30,7 @@ public class PanelChangePass extends javax.swing.JPanel {
             modelCombo = new DefaultComboBoxModel();
             comboUsers.setModel(modelCombo);
             chargeUsers();
+            
         }
     }
 
