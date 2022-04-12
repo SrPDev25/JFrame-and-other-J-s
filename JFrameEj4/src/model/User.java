@@ -55,6 +55,10 @@ public class User {
     public ArrayList<Message> getMailbox() {
         return mailbox;
     }
+    
+    public String toString(){
+        return login+" "+direction;
+    }
 
     @Override
     public int hashCode() {

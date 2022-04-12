@@ -17,6 +17,7 @@ public class WinControl extends MyJFrame {
     Mail myMail;
     PanelSignUp panelSignUp;
     PanelDemolish panelDemolish;
+    PanelConsult panelConsult;
     User activeUser;
 
     public WinControl() {
@@ -29,6 +30,7 @@ public class WinControl extends MyJFrame {
         if (user.getPermission() == User.USER) {//Si es un usuario no puede usar estos paneles
             mnuSingUp.setVisible(false);
             mnuDemolish.setVisible(false);
+            mnuConsult.setVisible(false);
         }
 
     }
@@ -46,6 +48,7 @@ public class WinControl extends MyJFrame {
         jMenu1 = new javax.swing.JMenu();
         mnuSingUp = new javax.swing.JMenuItem();
         mnuDemolish = new javax.swing.JMenuItem();
+        mnuConsult = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuDisconnect = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -61,6 +64,11 @@ public class WinControl extends MyJFrame {
         getContentPane().setLayout(new java.awt.FlowLayout());
 
         jMenu1.setText("Opciones");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         mnuSingUp.setText("Dar de alta");
         mnuSingUp.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +85,14 @@ public class WinControl extends MyJFrame {
             }
         });
         jMenu1.add(mnuDemolish);
+
+        mnuConsult.setText("Condulta usuarios");
+        mnuConsult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuConsultActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuConsult);
 
         jMenuBar1.add(jMenu1);
 
@@ -134,6 +150,17 @@ public class WinControl extends MyJFrame {
         pack();
     }//GEN-LAST:event_mnuDemolishActionPerformed
 
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void mnuConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultActionPerformed
+        clean();
+        panelConsult = new PanelConsult(myMail);
+        this.getContentPane().add(panelConsult);
+        pack();
+    }//GEN-LAST:event_mnuConsultActionPerformed
+
     private void clean() {
         try {
             this.remove(panelSignUp);
@@ -145,6 +172,11 @@ public class WinControl extends MyJFrame {
         } catch (Exception ex) {
 
         }
+        try {
+            this.remove(panelConsult);
+        } catch (Exception ex) {
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -152,6 +184,7 @@ public class WinControl extends MyJFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem mnuConsult;
     private javax.swing.JMenuItem mnuDemolish;
     private javax.swing.JMenuItem mnuDisconnect;
     private javax.swing.JMenuItem mnuSingUp;
