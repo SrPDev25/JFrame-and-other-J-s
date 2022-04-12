@@ -146,6 +146,7 @@ public class PanelSendMessage extends javax.swing.JPanel {
             lblErrorMail.setText("Falta dirección");
         } else if (posUser == -1) {
             lblErrorMail.setText("Dirección no encontrada");
+            correct = false;
         } else {
             lblErrorMail.setText("");
         }

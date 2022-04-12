@@ -15,16 +15,17 @@ public class Message {
     String matter;
     Fecha date;
     String content;
-    String transmitterDirection;
+    String author;
     boolean read;
 
-    public Message(String matter, Fecha date, String content, String transmitterDirection) {
+    public Message(String matter, Fecha date, String content, String author) {
         this.matter = matter;
         this.date = date;
         this.content = content;
-        this.transmitterDirection = transmitterDirection;
+        this.author = author;
     }
-
+    
+    
     public String getMatter() {
         return matter;
     }
@@ -37,8 +38,8 @@ public class Message {
         return content;
     }
 
-    public String getTransmitterDirection() {
-        return transmitterDirection;
+    public String getAuthor() {
+        return author;
     }
 
     public boolean isRead() {

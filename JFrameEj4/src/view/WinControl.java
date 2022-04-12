@@ -21,6 +21,7 @@ public class WinControl extends MyJFrame {
     PanelConsult panelConsult;
     PanelChangePass panelChangePass;
     PanelSendMessage panelSendMessage;
+    PanelMailbox panelMailbox;
     User activeUser;
 
     public WinControl() {
@@ -51,6 +52,7 @@ public class WinControl extends MyJFrame {
         jMenu1 = new javax.swing.JMenu();
         mnuChangePass = new javax.swing.JMenuItem();
         mnuSendMessage = new javax.swing.JMenuItem();
+        mnuMailbox = new javax.swing.JMenuItem();
         mnuSingUp = new javax.swing.JMenuItem();
         mnuDemolish = new javax.swing.JMenuItem();
         mnuConsult = new javax.swing.JMenuItem();
@@ -90,6 +92,14 @@ public class WinControl extends MyJFrame {
             }
         });
         jMenu1.add(mnuSendMessage);
+
+        mnuMailbox.setText("Buzon de entrada");
+        mnuMailbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuMailboxActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuMailbox);
 
         mnuSingUp.setText("Dar de alta");
         mnuSingUp.addActionListener(new java.awt.event.ActionListener() {
@@ -215,6 +225,13 @@ public class WinControl extends MyJFrame {
         pack();
     }//GEN-LAST:event_mnuSendMessageActionPerformed
 
+    private void mnuMailboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMailboxActionPerformed
+        clean();
+        panelMailbox=new PanelMailbox(myMail, activeUser);
+        this.getContentPane().add(panelMailbox);
+        pack();
+    }//GEN-LAST:event_mnuMailboxActionPerformed
+
     private void clean() {
         try {
             this.remove(panelSignUp);
@@ -239,6 +256,10 @@ public class WinControl extends MyJFrame {
             this.remove(panelSendMessage);
         } catch (Exception ex) {
 
+        }try {
+            this.remove(panelMailbox);
+        } catch (Exception ex) {
+
         }
     }
 
@@ -251,6 +272,7 @@ public class WinControl extends MyJFrame {
     private javax.swing.JMenuItem mnuConsult;
     private javax.swing.JMenuItem mnuDemolish;
     private javax.swing.JMenuItem mnuDisconnect;
+    private javax.swing.JMenuItem mnuMailbox;
     private javax.swing.JMenuItem mnuSendMessage;
     private javax.swing.JMenuItem mnuSingUp;
     // End of variables declaration//GEN-END:variables
