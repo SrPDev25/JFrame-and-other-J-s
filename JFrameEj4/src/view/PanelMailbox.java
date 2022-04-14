@@ -4,11 +4,11 @@
  */
 package view;
 
+import control.Fecha;
 import control.Mail;
-import control.MyTableRender;
+import control.MyJTable;
 import java.awt.Color;
 import java.util.Vector;
-import javax.swing.table.DefaultTableModel;
 import model.Message;
 import model.User;
 
@@ -20,34 +20,63 @@ public class PanelMailbox extends javax.swing.JPanel {
 
     Mail myMail;
     User activeUser;
-    DefaultTableModel modelMailbox;
-    
+    MyJTable modelMailbox;//Usa my propia clase MyJTable con metodos editados
+
     public PanelMailbox(Mail myMail, User activeUser) {
         initComponents();
-        this.myMail=myMail;
-        this.activeUser=activeUser;
-        modelMailbox=new DefaultTableModel();
+        this.myMail = myMail;
+        this.activeUser = activeUser;
+        modelMailbox = new MyJTable();
         tblMailbox.setModel(modelMailbox);
-        modelMailbox.setColumnIdentifiers(new String[]{"Asunto","Autor","Fecha","Leido"});
+        modelMailbox.setColumnIdentifiers(new String[]{
+            "Asunto", "Autor", "Fecha", "Leido"});
         chargeMails();
+        
+        //Evita que las columnas puedan ser movidas
+        tblMailbox.getTableHeader().setReorderingAllowed(false);
     }
+        //activeUser.getMailbox().add(new Message("queso", new Fecha("12/1/2000"), TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY)); //Mensaje de prueba
 
-    private void chargeMails(){
-        for(Message m: activeUser.getMailbox()){
-            Vector v=new Vector();
+    /**
+     * Carga los mensajes del usuario activo
+     */
+    private void chargeMails() {
+        cleanTable();
+        for (Message m : activeUser.getMailbox()) {
+            Vector v = new Vector();
             v.add(m.getMatter());
             v.add(m.getAuthor());
             v.add(m.getDate());
             if (m.isRead()) {
                 v.add("Si");
-            }else{
+            } else {
                 tblMailbox.setBackground(Color.GRAY);
-                v.add("No"); 
+                v.add("No");
             }
             modelMailbox.addRow(v);
-            
+
         }
     }
+
+    /**
+     * Limpia la tabla de mensajes
+     */
+    private void cleanTable() {
+        while (modelMailbox.getRowCount() != 0) {
+            modelMailbox.removeRow(0);
+        }
+    }
+
+    /**
+     * Limpia los textos del mensaje
+     */
+    private void cleanMessage() {
+        txtAuthor.setText("");
+        txtContent.setText("");
+        txtDate.setText("");
+        txtMatter.setText("");
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -79,8 +108,34 @@ public class PanelMailbox extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMailbox.setCellSelectionEnabled(true);
+        tblMailbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMailboxMouseClicked(evt);
+            }
+        });
+        tblMailbox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblMailboxKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblMailbox);
+        tblMailbox.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (tblMailbox.getColumnModel().getColumnCount() > 0) {
+            tblMailbox.getColumnModel().getColumn(0).setResizable(false);
+            tblMailbox.getColumnModel().getColumn(1).setResizable(false);
+            tblMailbox.getColumnModel().getColumn(2).setResizable(false);
+            tblMailbox.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jLabel2.setText("Mensaje");
@@ -164,6 +219,33 @@ public class PanelMailbox extends javax.swing.JPanel {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblMailboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMailboxKeyPressed
+
+    }//GEN-LAST:event_tblMailboxKeyPressed
+
+    /**
+     * Cuando se da clic en la tabla coge el mensaje seleccionado
+     *
+     * @param evt
+     */
+    private void tblMailboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMailboxMouseClicked
+        int pos = tblMailbox.getSelectedRow();
+        //Si al clicar no se dió a ningun mensaje no hace nada
+        if (pos != -1) {
+            Message reading;
+            reading = (Message) activeUser.getMailbox().get(pos);
+            cleanMessage();
+            //Inserta mensaje
+            txtAuthor.setText(reading.getAuthor());
+            txtContent.setText(reading.getContent());
+            txtDate.setText(reading.getDate().stringFecha());
+            txtMatter.setText(reading.getMatter());
+            
+            reading.setRead(true);//Hace que el mensaje esté en leido
+            chargeMails();
+        }
+    }//GEN-LAST:event_tblMailboxMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

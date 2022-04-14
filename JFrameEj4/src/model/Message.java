@@ -24,6 +24,11 @@ public class Message {
         this.content = content;
         this.author = author;
     }
+
+    public void setRead(boolean read) {
+        this.read = read;
+    }
+    
     
     
     public String getMatter() {
