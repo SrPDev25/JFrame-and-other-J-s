@@ -140,11 +140,18 @@ public class PanelMailbox extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jLabel2.setText("Mensaje");
 
+        txtMatter.setEditable(false);
+
+        txtContent.setEditable(false);
         txtContent.setColumns(20);
         txtContent.setRows(5);
         jScrollPane2.setViewportView(txtContent);
 
         jLabel3.setText("Autor");
+
+        txtAuthor.setEditable(false);
+
+        txtDate.setEditable(false);
 
         jLabel4.setText("Asunto");
 
