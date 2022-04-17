@@ -6,6 +6,7 @@ package view;
 
 import control.Fecha;
 import control.Mail;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import model.Message;
 import model.User;
@@ -44,10 +45,21 @@ public class PanelSendMessage extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jLabel1.setText("Message");
 
+        txtMatter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMatterKeyPressed(evt);
+            }
+        });
+
         jLabel2.setText("Asunto");
 
         txtMessage.setColumns(20);
         txtMessage.setRows(5);
+        txtMessage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMessageKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtMessage);
 
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -59,6 +71,12 @@ public class PanelSendMessage extends javax.swing.JPanel {
         });
 
         jLabel3.setText("Mensaje");
+
+        txtMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMailKeyPressed(evt);
+            }
+        });
 
         jLabel4.setText("Destinatario");
 
@@ -166,6 +184,30 @@ public class PanelSendMessage extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_btnSendActionPerformed
+
+    private void txtMatterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatterKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtMail.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            txtMatter.setText("");
+        }
+    }//GEN-LAST:event_txtMatterKeyPressed
+
+    private void txtMailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            txtMessage.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            txtMail.setText("");
+        }
+    }//GEN-LAST:event_txtMailKeyPressed
+
+    private void txtMessageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMessageKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            btnSend.doClick();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+            txtMessage.setText("");
+        }
+    }//GEN-LAST:event_txtMessageKeyPressed
 
     private void clean() {
         txtMail.setText("");
