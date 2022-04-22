@@ -60,7 +60,7 @@ public class User {
         this.pass = pass;
     }
     
-    
+    @Override
     public String toString(){
         return login+" "+direction;
     }

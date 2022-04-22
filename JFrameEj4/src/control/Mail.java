@@ -25,6 +25,8 @@ public class Mail {
 
     /**
      * Comprueba si un usuario existe vía nombre de usuario
+     * Problema, tiene en cuenta que al dar de alta no se puedan repetir ya 
+     *  que este metodo coge al primero que encuentra y falla si hay repetidos
      * @param user se introduce en nombre de usuario
      * @return 
      */
@@ -41,16 +43,9 @@ public class Mail {
         return exist;
     }
 
-    public ArrayList<User> getStardarts() {
-        ArrayList<User> standarts = new ArrayList<>();
-        for (User i : users) {
-            if (i.getPermission() == User.USER) {
-                standarts.add(i);
-            }
-        }
-        return standarts;
-    }
-    
+    /**
+     * Carga usuarios predeterminados para un funcionamiento basico del programa
+     */
     public void chargeDefaultUsers(){
         users.add(new User("0", "0", User.ADMIN, "admin@admin.com"));
         users.add(new User("1", "1", User.USER, "user@miMail.com"));
