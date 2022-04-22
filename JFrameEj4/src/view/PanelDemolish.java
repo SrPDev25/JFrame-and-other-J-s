@@ -26,7 +26,7 @@ public class PanelDemolish extends javax.swing.JPanel {
         comboUsers.setModel(modelCombo);
         chargeUsers();
     }
-
+    //Solo eliminar el usuario a eliminar y no todos (Cambiar)
     private void chargeUsers() {
         modelCombo.removeAllElements();
         modelCombo.addAll(myMail.getUsers());

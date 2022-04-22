@@ -15,7 +15,7 @@ public class Message {
     String matter;
     Fecha date;
     String content;
-    String author;
+    String author; //Usar objeto usuario (Cambiar)
     boolean read;
 
     public Message(String matter, Fecha date, String content, String author) {

@@ -162,11 +162,14 @@ public class PanelSendMessage extends javax.swing.JPanel {
         if (direction.equals("")) {
             correct = false;
             lblErrorMail.setText("Falta dirección");
-        } else if (posUser == -1) {
-            lblErrorMail.setText("Dirección no encontrada");
-            correct = false;
         } else {
-            lblErrorMail.setText("");
+            posUser = myMail.getUsers().indexOf(new User(direction));
+            if (posUser == -1) {
+                lblErrorMail.setText("Dirección no encontrada");
+                correct = false;
+            } else {
+                lblErrorMail.setText("");
+            }
         }
 
         //No se se indico asunto se asigna uno predeterminado
@@ -178,7 +181,7 @@ public class PanelSendMessage extends javax.swing.JPanel {
         if (correct) {
             myMail.getUsers().get(posUser).getMailbox().add(
                     new Message(matter, fecha, matter, activeUser.getDirection()));
-            JOptionPane.showMessageDialog(this, "Mensaje enviado","Enviado",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Mensaje enviado", "Enviado", JOptionPane.INFORMATION_MESSAGE);
             clean();
         }
 
@@ -186,25 +189,25 @@ public class PanelSendMessage extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void txtMatterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatterKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtMail.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             txtMatter.setText("");
         }
     }//GEN-LAST:event_txtMatterKeyPressed
 
     private void txtMailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtMessage.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             txtMail.setText("");
         }
     }//GEN-LAST:event_txtMailKeyPressed
 
     private void txtMessageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMessageKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnSend.doClick();
-        }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             txtMessage.setText("");
         }
     }//GEN-LAST:event_txtMessageKeyPressed

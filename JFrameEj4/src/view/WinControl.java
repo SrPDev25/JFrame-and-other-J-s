@@ -71,11 +71,6 @@ public class WinControl extends MyJFrame {
         getContentPane().setLayout(new java.awt.FlowLayout());
 
         jMenu1.setText("Opciones");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
 
         mnuChangePass.setText("Cambiar contraseña");
         mnuChangePass.addActionListener(new java.awt.event.ActionListener() {
@@ -180,10 +175,6 @@ public class WinControl extends MyJFrame {
         this.getContentPane().add(panelDemolish);
         pack();
     }//GEN-LAST:event_mnuDemolishActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-
-    }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void mnuConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultActionPerformed
         clean();

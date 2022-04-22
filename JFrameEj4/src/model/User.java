@@ -52,6 +52,8 @@ public class User {
         return direction;
     }
 
+    //Crear metodo para añadir nuevos correos (Cambiar)
+    
     public ArrayList<Message> getMailbox() {
         return mailbox;
     }

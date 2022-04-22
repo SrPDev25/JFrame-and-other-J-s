@@ -13,7 +13,7 @@ import model.User;
  */
 public class Mail {
 
-    ArrayList<User> users;
+    private ArrayList<User> users;
 
     public Mail() {
         users = new ArrayList<>();
