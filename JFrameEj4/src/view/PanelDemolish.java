@@ -26,6 +26,7 @@ public class PanelDemolish extends javax.swing.JPanel {
         comboUsers.setModel(modelCombo);
         chargeUsers();
     }
+    
     //Solo eliminar el usuario a eliminar y no todos (Cambiar)
     private void chargeUsers() {
         modelCombo.removeAllElements();
@@ -33,9 +34,7 @@ public class PanelDemolish extends javax.swing.JPanel {
         modelCombo.removeElement(activeuser);
         if (modelCombo.getSize() == 0) {
             lblError.setText("No hay usuarios para eliminar");
-        } else {
-            lblError.setText("");
-        }
+        } 
     }
 
     /**
@@ -104,7 +103,11 @@ public class PanelDemolish extends javax.swing.JPanel {
     private void btnDemolishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemolishActionPerformed
         User userDeleted = (User) modelCombo.getElementAt(comboUsers.getSelectedIndex());
         myMail.getUsers().remove(userDeleted);
-        chargeUsers();
+        modelCombo.removeElement(userDeleted);
+        if (modelCombo.getSize() == 0) {
+            lblError.setText("No hay usuarios para eliminar");
+        }
+        
     }//GEN-LAST:event_btnDemolishActionPerformed
 
 

@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
+import control.Fecha;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- *
- * @author satan
- */
+
 public class User {
 
     private String login; //Log with user 
@@ -30,11 +24,13 @@ public class User {
         mailbox = new ArrayList<>();
     }
 
+    public void newMail(String matter, Fecha date, String content, User author){
+        mailbox.add(new Message(matter, date, content, author));
+    }
+    
     public User(String direction) {//Direction as identification, less at log
         this.direction = direction;
     }
-
-    
     
     public String getLogin() {
         return login;

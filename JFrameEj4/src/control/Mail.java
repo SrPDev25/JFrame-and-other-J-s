@@ -42,7 +42,27 @@ public class Mail {
         }
         return exist;
     }
+    
+    public int validateUser(String user, String pass){
+        int pos=userExist(user);
+        if (pos!=-1){
+            User checking=users.get(pos);
+            if (!checking.getPass().equals(pass)) {
+                pos=-2;
+            }
+        }
+        
+        return pos;
+    }
 
+    public int userDirectionExist(String direction){
+        return users.indexOf(new User(direction));
+    }
+    
+    public User userAt(int pos){
+        return users.get(pos);
+    }
+    
     /**
      * Carga usuarios predeterminados para un funcionamiento basico del programa
      */

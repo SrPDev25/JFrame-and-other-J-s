@@ -244,7 +244,7 @@ public class PanelMailbox extends javax.swing.JPanel {
             reading = (Message) activeUser.getMailbox().get(pos);
             cleanMessage();
             //Inserta mensaje
-            txtAuthor.setText(reading.getAuthor());
+            txtAuthor.setText(reading.getAuthor().getLogin());
             txtContent.setText(reading.getContent());
             txtDate.setText(reading.getDate().stringFecha());
             txtMatter.setText(reading.getMatter());

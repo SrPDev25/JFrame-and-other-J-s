@@ -163,7 +163,7 @@ public class PanelSendMessage extends javax.swing.JPanel {
             correct = false;
             lblErrorMail.setText("Falta dirección");
         } else {
-            posUser = myMail.getUsers().indexOf(new User(direction));
+            posUser = myMail.userDirectionExist(direction);
             if (posUser == -1) {
                 lblErrorMail.setText("Dirección no encontrada");
                 correct = false;
@@ -179,13 +179,12 @@ public class PanelSendMessage extends javax.swing.JPanel {
 
         //Le añade al usuario receptor el mensaje
         if (correct) {
+            
             myMail.getUsers().get(posUser).getMailbox().add(
-                    new Message(matter, fecha, matter, activeUser.getDirection()));
+                    new Message(matter, fecha, matter, activeUser));
             JOptionPane.showMessageDialog(this, "Mensaje enviado", "Enviado", JOptionPane.INFORMATION_MESSAGE);
             clean();
         }
-
-
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void txtMatterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatterKeyPressed

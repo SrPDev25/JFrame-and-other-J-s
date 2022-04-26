@@ -144,9 +144,9 @@ public class WinLoging extends MyJFrame {
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
         String user=txtUser.getText().trim();
         String pass=new String(pswPass.getPassword());
-        int pos=myMail.userExist(user);
-        if(pos!=-1&&myMail.getUsers().get(pos).getPass().equals(pass)){
-            new WinControl(myMail,myMail.getUsers().get(pos)).setVisible(true);
+        int pos=myMail.validateUser(user, pass);
+        if(pos>-1){
+            new WinControl(myMail,myMail.userAt(pos)).setVisible(true);
             dispose();
             pack();
         }else{
