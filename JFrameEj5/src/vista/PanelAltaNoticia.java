@@ -181,7 +181,7 @@ public class PanelAltaNoticia extends javax.swing.JPanel {
             noticia = txtNoticia.getText();
             fecha = new Fecha();
             fecha.setToday();
-            miEmpresa.getNoticias().add(new Noticia(titulo, noticia, categoria, usuarioActivo, fecha));
+            miEmpresa.nuevaNoticia(titulo, noticia, categoria, usuarioActivo, fecha);
             lblErrorTitulo.setText("");
             limpiar();
         }

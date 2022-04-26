@@ -11,9 +11,10 @@ import java.util.Objects;
  * @author satan
  */
 public class Usuario {
+
     private String login;//Unico
-	private String pass;
-	private String nombre;
+    private String pass;
+    private String nombre;
 
     public Usuario(String login, String pass, String nombre) {
         this.login = login;
@@ -24,8 +25,6 @@ public class Usuario {
     public Usuario(String login) {
         this.login = login;
     }
-    
-    
 
     public String getLogin() {
         return login;
@@ -63,5 +62,5 @@ public class Usuario {
         }
         return true;
     }
-        
+
 }

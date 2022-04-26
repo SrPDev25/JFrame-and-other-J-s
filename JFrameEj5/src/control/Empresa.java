@@ -57,15 +57,19 @@ public class Empresa {
      * @return Devuelve la posicion, -1 si no existe o -2 si no se introdujo nada
      */
     public int tituloExiste(String titulo) {
-        int pos= noticias.indexOf(new Noticia(titulo));
+        int pos=-2;
         
-        if(titulo.equals("")){
-            pos=-2;
+        if(!titulo.equals("")){
+            pos= noticias.indexOf(new Noticia(titulo));
         }
         
         return pos;
     }
 
+    public void nuevaNoticia(String titulo, String noticia, String categoria, Usuario autor, Fecha fecha){
+        noticias.add(new Noticia(titulo, noticia, categoria, autor, fecha));
+    }
+    
     public ArrayList<Usuario> getAutores() {
         return autores;
     }

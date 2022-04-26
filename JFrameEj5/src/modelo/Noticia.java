@@ -12,11 +12,12 @@ import java.util.Objects;
  * @author satan
  */
 public class Noticia {
+
     private String titulo; //Unica
     private String noticia;
-	private String categoria;
-	private Usuario autor;
-	private Fecha fecha;
+    private String categoria;
+    private Usuario autor;
+    private Fecha fecha;
 
     public Noticia(String titulo, String noticia, String categoria, Usuario autor, Fecha fecha) {
         this.titulo = titulo;
@@ -26,12 +27,10 @@ public class Noticia {
         this.fecha = fecha;
     }
 
-
     public Noticia(String titulo) {
         this.titulo = titulo;
     }
 
-    
     public String getTitulo() {
         return titulo;
     }
@@ -76,6 +75,5 @@ public class Noticia {
     public String getNoticia() {
         return noticia;
     }
-        
-        
+
 }
