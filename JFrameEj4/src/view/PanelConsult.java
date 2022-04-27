@@ -7,12 +7,8 @@ package view;
 import control.Mail;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import model.User;
 
-/**
- *
- * @author satan
- */
+
 public class PanelConsult extends javax.swing.JPanel {
 
     Mail myMail;

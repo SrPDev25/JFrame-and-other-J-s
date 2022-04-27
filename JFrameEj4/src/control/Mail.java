@@ -11,7 +11,7 @@ import model.User;
  *
  * @author satan
  */
-public class Mail {
+public class Mail { 
 
     private ArrayList<User> users;
 

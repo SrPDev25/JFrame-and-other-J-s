@@ -31,7 +31,7 @@ public class MyJFrame extends JFrame {//Clase que hereda de JFrame
 
     /**
      * Muestra un mensaje de confirmacion para cierre la ventana
- Recuerda deshabilitar el cierre en las propiedades del JFrame
+     * Recuerda deshabilitar el cierre en las propiedades del JFrame
      */
     public void cerrar() {
         int eleccion = JOptionPane.showConfirmDialog(this, "Desea cerrar el programa", "Cerrar", JOptionPane.WARNING_MESSAGE);
