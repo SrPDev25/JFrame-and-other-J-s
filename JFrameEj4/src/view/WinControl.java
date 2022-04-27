@@ -36,7 +36,7 @@ public class WinControl extends MyJFrame {
             mnuDemolish.setVisible(false);
             mnuConsult.setVisible(false);
         }
-
+        centrar();
     }
 
     /**

@@ -31,12 +31,17 @@ public class PanelConsult extends javax.swing.JPanel {
         while(modelTable.getRowCount()!=0){
             modelTable.removeRow(0);
         }
-        for(User i: myMail.getUsers()){
+        //Funcines lambda
+        //.map, por cada usuario retorna un vector con los datos de cada uno
+        //.forEachOrdered, una vez creado el vector se ejecuta el forEachOrdered o un forEach
+        myMail.getUsers().stream().map(i -> {
             Vector v=new Vector();
             v.add(i.getLogin());
             v.add(i.getDirection());
+            return v;
+        }).forEach(v -> {
             modelTable.addRow(v);
-        }
+        });
         
     }
     
