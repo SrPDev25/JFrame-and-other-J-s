@@ -18,10 +18,10 @@ import modelo.Usuario;
 public class PanelAltaNoticia extends javax.swing.JPanel {
 
     Empresa miEmpresa;
-    Usuario usuarioActivo;
+    String usuarioActivo;
     DefaultComboBoxModel modeloCombo;
 
-    public PanelAltaNoticia(Empresa miEmpresa, Usuario usuarioActivo) {
+    public PanelAltaNoticia(Empresa miEmpresa, String usuarioActivo) {
         initComponents();
         this.miEmpresa = miEmpresa;
         this.usuarioActivo = usuarioActivo;

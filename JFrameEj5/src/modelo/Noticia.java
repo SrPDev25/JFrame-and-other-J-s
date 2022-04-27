@@ -16,17 +16,17 @@ public class Noticia {
     private String titulo; //Unica
     private String noticia;
     private String categoria;
-    private Usuario autor;
+    private String autor;
     private Fecha fecha;
 
-    public Noticia(String titulo, String noticia, String categoria, Usuario autor, Fecha fecha) {
+    public Noticia(String titulo, String noticia, String categoria, String autor, Fecha fecha) {
         this.titulo = titulo;
         this.noticia = noticia;
         this.categoria = categoria;
         this.autor = autor;
         this.fecha = fecha;
     }
-
+ 
     public Noticia(String titulo) {
         this.titulo = titulo;
     }
@@ -39,7 +39,7 @@ public class Noticia {
         return categoria;
     }
 
-    public Usuario getAutor() {
+    public String getAutor() {
         return autor;
     }
 

@@ -5,6 +5,7 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import modelo.Noticia;
 import modelo.Usuario;
 
@@ -14,12 +15,12 @@ import modelo.Usuario;
  */
 public class Empresa {
 
-    ArrayList<Usuario> autores;
-    ArrayList<Noticia> noticias;
+    HashMap<String, Usuario> autores;
+    ArrayList< Noticia> noticias;
     ArrayList<String> categoria;
 
     public Empresa() {
-        autores= new ArrayList<>();
+        autores= new HashMap<>();
         noticias= new ArrayList<>();
         categoria= new ArrayList<>();
     }
@@ -27,8 +28,8 @@ public class Empresa {
     
     
     public void cargarDatos() {
-        autores.add(new Usuario("0", "0", "Admin"));
-        autores.add(new Usuario("usuario", "123", "Primer usuario"));
+        autores.put("0",new Usuario( "0", "Admin"));
+        autores.put("usuario",new Usuario( "123", "Primer usuario"));
         categoria.add("Comedia");
         categoria.add("Ciencia");
         categoria.add("Politica");
@@ -41,14 +42,16 @@ public class Empresa {
      * @param user
      * @return Devuelve la posicion, -1 si no existe o -2 si no se introdujo nada
      */
-    public int usuarioExiste(String user) {
-        int pos= autores.indexOf(new Usuario(user));
-        
-        if(user.equals("")){
-            pos=-2;
+    public int usuarioExiste(String user,String pass) {
+        if(autores.containsKey(user)){
+            if (autores.get(user).getPass().equals(pass)) {
+                return 0;
+            }else{
+                return -1;
+            }
+        }else{
+            return -2;
         }
-        
-        return pos;
     }
 
     /**
@@ -66,12 +69,8 @@ public class Empresa {
         return pos;
     }
 
-    public void nuevaNoticia(String titulo, String noticia, String categoria, Usuario autor, Fecha fecha){
+    public void nuevaNoticia(String titulo, String noticia, String categoria, String autor, Fecha fecha){
         noticias.add(new Noticia(titulo, noticia, categoria, autor, fecha));
-    }
-    
-    public ArrayList<Usuario> getAutores() {
-        return autores;
     }
 
     public ArrayList<Noticia> getNoticias() {

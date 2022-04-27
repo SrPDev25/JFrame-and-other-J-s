@@ -7,6 +7,7 @@ package vista;
 import control.Empresa;
 import control.MyJTable;
 import java.util.Vector;
+import java.util.stream.Collectors;
 import modelo.Noticia;
 import modelo.Usuario;
 
@@ -17,10 +18,10 @@ import modelo.Usuario;
 public class PanelConsultaNoticias extends javax.swing.JPanel {
 
     Empresa miEmpresa;
-    Usuario usuarioActivo;
+    String usuarioActivo; 
     MyJTable modelNoticias;//Usa my propia clase MyJTable con metodos editados
 
-    public PanelConsultaNoticias(Empresa miEmpresa, Usuario usuarioActivo) {
+    public PanelConsultaNoticias(Empresa miEmpresa, String usuarioActivo) {
         initComponents();
         this.miEmpresa = miEmpresa;
         this.usuarioActivo = usuarioActivo;
@@ -42,6 +43,8 @@ public class PanelConsultaNoticias extends javax.swing.JPanel {
      */
     private void cargarNoticias() {
         cleanTable();
+        
+        
         for (Noticia n : miEmpresa.getNoticias()) {
             Vector v = new Vector();
             v.add(n.getTitulo());
@@ -57,7 +60,7 @@ public class PanelConsultaNoticias extends javax.swing.JPanel {
         while (modelNoticias.getRowCount() != 0) {
             modelNoticias.removeRow(0);
         }
-    }
+    } 
 
     /**
      * Limpia los textos de la noticia
@@ -237,7 +240,7 @@ public class PanelConsultaNoticias extends javax.swing.JPanel {
             txtNoticia.setText(reading.getNoticia());
             txtFecha.setText(reading.getFecha().stringFecha());
             txtTitulo.setText(reading.getTitulo());            
-            if(usuarioActivo.getLogin().equals(reading.getAutor().getLogin())){
+            if(usuarioActivo.equals(reading.getAutor())){
                 btnDelete.setVisible(true);
             }else{
                 btnDelete.setVisible(false);
