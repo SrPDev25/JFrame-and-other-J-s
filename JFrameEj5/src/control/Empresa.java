@@ -5,6 +5,7 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import modelo.Noticia;
 import modelo.Usuario;
 
@@ -14,21 +15,21 @@ import modelo.Usuario;
  */
 public class Empresa {
 
-    ArrayList<Usuario> autores;
-    ArrayList<Noticia> noticias;
-    ArrayList<String> categoria;
+    private HashMap<String,Usuario> autores;
+    private HashMap<String,Noticia> noticias;
+    private ArrayList<String> categoria;
 
     public Empresa() {
-        autores= new ArrayList<>();
-        noticias= new ArrayList<>();
+        autores=new HashMap<>();
+        noticias= new HashMap<>();
         categoria= new ArrayList<>();
     }
 
     
     
     public void cargarDatos() {
-        autores.add(new Usuario("0", "0", "Admin"));
-        autores.add(new Usuario("usuario", "123", "Primer usuario"));
+        autores.put("0",new Usuario( "0", "Admin"));
+        autores.put("usuario",new Usuario( "123", "Primer usuario"));
         categoria.add("Comedia");
         categoria.add("Ciencia");
         categoria.add("Politica");
@@ -41,14 +42,23 @@ public class Empresa {
      * @param user
      * @return Devuelve la posicion, -1 si no existe o -2 si no se introdujo nada
      */
-    public int usuarioExiste(String user) {
-        int pos= autores.indexOf(new Usuario(user));
-        
-        if(user.equals("")){
-            pos=-2;
+    public int usuarioExiste(String user,String pass) {
+        if (autores.containsKey(user)) {
+            if (autores.get(user).getPass().equals(pass)) {
+                return 0;
+            }else
+                return -1;
+        }else{
+            return -2;
         }
-        
-        return pos;
+    }
+    
+    public Usuario getusuario(String user){
+        if (autores.containsKey(user)) {
+            return autores.get(user);
+        }else{
+            return null;
+        }
     }
 
     /**
@@ -57,29 +67,23 @@ public class Empresa {
      * @return Devuelve la posicion, -1 si no existe o -2 si no se introdujo nada
      */
     public int tituloExiste(String titulo) {
-        int pos=-2;
-        
-        if(!titulo.equals("")){
-            pos= noticias.indexOf(new Noticia(titulo));
+        if (noticias.containsKey(titulo)) {
+            return 0;
+        }else{
+            return -1;
         }
-        
-        return pos;
     }
 
-    public void nuevaNoticia(String titulo, String noticia, String categoria, Usuario autor, Fecha fecha){
-        noticias.add(new Noticia(titulo, noticia, categoria, autor, fecha));
-    }
-    
-    public ArrayList<Usuario> getAutores() {
-        return autores;
-    }
-
-    public ArrayList<Noticia> getNoticias() {
-        return noticias;
+    public void nuevaNoticia(String titulo, String noticia, String categoria, String autor, Fecha fecha){
+        noticias.put(titulo,new Noticia( noticia, categoria, autor, fecha));
     }
 
     public ArrayList<String> getCategoria() {
         return categoria;
+    }
+
+    public HashMap<String,Noticia> getNoticias() {
+        return noticias;
     }
     
     

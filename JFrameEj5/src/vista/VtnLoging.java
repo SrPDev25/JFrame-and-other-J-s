@@ -145,16 +145,16 @@ public class VtnLoging extends MyJFrame {
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
         String user=txtUser.getText().trim();
         String pass=new String(pswPass.getPassword());
-        int pos=miEmpresa.usuarioExiste(user);
-        if(pos>-1&&miEmpresa.getAutores().get(pos).getPass().equals(pass)){
-            new VtnControl(miEmpresa,miEmpresa.getAutores().get(pos)).setVisible(true);
+        int resultado=miEmpresa.usuarioExiste(user,pass);
+        if (resultado==0) {
+            new VtnControl(miEmpresa,user).setVisible(true);
             dispose();
             pack();
-        }else if(pos==-1){
+        }else {
             lblError.setText("Usuario o contraseña incorrectos");
-        }else{
-            lblError.setText("No se introdujo usuario");
         }
+        
+        
     }//GEN-LAST:event_btnContinueActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

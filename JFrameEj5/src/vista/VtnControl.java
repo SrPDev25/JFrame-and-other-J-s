@@ -15,11 +15,11 @@ import modelo.Usuario;
 public class VtnControl extends MyJFrame {
 
     Empresa miEmpresa;
-    Usuario usuarioActivo;
+    String usuarioActivo;
     PanelAltaNoticia panelAltaNoticia;
     PanelConsultaNoticias panelConsultaNoticias;
 
-    public VtnControl(Empresa miEmpresa, Usuario usuarioActivo) {
+    public VtnControl(Empresa miEmpresa, String usuarioActivo) {
         initComponents();
         centrar();
         this.usuarioActivo = usuarioActivo;
