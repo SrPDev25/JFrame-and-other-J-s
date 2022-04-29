@@ -45,7 +45,7 @@ public class PanelMailbox extends javax.swing.JPanel {
         for (Message m : activeUser.getMailbox()) {
             Vector v = new Vector();
             v.add(m.getMatter());
-            v.add(m.getAuthor());
+            v.add(m.getAuthor().getDirection());
             v.add(m.getDate());
             if (m.isRead()) {
                 v.add("Si");
@@ -244,7 +244,7 @@ public class PanelMailbox extends javax.swing.JPanel {
             reading = (Message) activeUser.getMailbox().get(pos);
             cleanMessage();
             //Inserta mensaje
-            txtAuthor.setText(reading.getAuthor().getLogin());
+            txtAuthor.setText(reading.getAuthor().getLogin() +"  "+ reading.getAuthor().getDirection());
             txtContent.setText(reading.getContent());
             txtDate.setText(reading.getDate().stringFecha());
             txtMatter.setText(reading.getMatter());
