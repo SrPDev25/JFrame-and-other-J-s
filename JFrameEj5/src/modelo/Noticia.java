@@ -15,42 +15,30 @@ public class Noticia {
 
     private String titulo; //Unica
     private String noticia;
-    private String categoria;
-    private String autor;
+    private Categoria categoria;
+    private Usuario autor;
     private Fecha fecha;
 
-    public Noticia(String titulo, String noticia, String categoria, String autor, Fecha fecha) {
+    public Noticia(String titulo, String noticia, Categoria categoria, Usuario autor, Fecha fecha) {
         this.titulo = titulo;
         this.noticia = noticia;
         this.categoria = categoria;
         this.autor = autor;
         this.fecha = fecha;
     }
- 
-    public Noticia(String titulo) {
+
+    public Noticia(String titulo, Categoria categoria, Usuario autor) {
         this.titulo = titulo;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public Fecha getFecha() {
-        return fecha;
+        this.categoria = categoria;
+        this.autor = autor;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.titulo);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.titulo);
+        hash = 79 * hash + Objects.hashCode(this.categoria);
+        hash = 79 * hash + Objects.hashCode(this.autor);
         return hash;
     }
 
@@ -69,6 +57,12 @@ public class Noticia {
         if (!Objects.equals(this.titulo, other.titulo)) {
             return false;
         }
+        if (!Objects.equals(this.categoria, other.categoria)) {
+            return false;
+        }
+        if (!Objects.equals(this.autor, other.autor)) {
+            return false;
+        }
         return true;
     }
 
@@ -76,4 +70,19 @@ public class Noticia {
         return noticia;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Usuario getAutor() {
+        return autor;
+    }
+
+    public Fecha getFecha() {
+        return fecha;
+    }
 }

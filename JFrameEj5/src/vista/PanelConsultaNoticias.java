@@ -7,7 +7,6 @@ package vista;
 import control.Empresa;
 import control.MyJTable;
 import java.util.Vector;
-import java.util.stream.Collectors;
 import modelo.Noticia;
 import modelo.Usuario;
 
@@ -18,10 +17,10 @@ import modelo.Usuario;
 public class PanelConsultaNoticias extends javax.swing.JPanel {
 
     Empresa miEmpresa;
-    String usuarioActivo; 
+    Usuario usuarioActivo; 
     MyJTable modelNoticias;//Usa my propia clase MyJTable con metodos editados
 
-    public PanelConsultaNoticias(Empresa miEmpresa, String usuarioActivo) {
+    public PanelConsultaNoticias(Empresa miEmpresa, Usuario usuarioActivo) {
         initComponents();
         this.miEmpresa = miEmpresa;
         this.usuarioActivo = usuarioActivo;

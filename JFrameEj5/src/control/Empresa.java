@@ -6,6 +6,7 @@ package control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import modelo.Categoria;
 import modelo.Noticia;
 import modelo.Usuario;
 
@@ -17,7 +18,7 @@ public class Empresa {
 
     HashMap<String, Usuario> autores;
     ArrayList< Noticia> noticias;
-    ArrayList<String> categoria;
+    ArrayList<Categoria> categoria;
 
     public Empresa() {
         autores= new HashMap<>();
@@ -30,11 +31,11 @@ public class Empresa {
     public void cargarDatos() {
         autores.put("0",new Usuario( "0", "Admin"));
         autores.put("usuario",new Usuario( "123", "Primer usuario"));
-        categoria.add("Comedia");
-        categoria.add("Ciencia");
-        categoria.add("Politica");
-        categoria.add("Moda");
-        categoria.add("Cine");
+        categoria.add(new Categoria("Comedia"));
+        categoria.add(new Categoria("Ciencia"));
+        categoria.add(new Categoria("Politica"));
+        categoria.add(new Categoria("Moda"));
+        categoria.add(new Categoria("Cine"));
     }
 
     /**
@@ -59,17 +60,17 @@ public class Empresa {
      * @param titulo
      * @return Devuelve la posicion, -1 si no existe o -2 si no se introdujo nada
      */
-    public int tituloExiste(String titulo) {
+    public int noticiaValida(String titulo, Usuario user, Categoria categoria) {
         int pos=-2;
         
         if(!titulo.equals("")){
-            pos= noticias.indexOf(new Noticia(titulo));
+            pos= noticias.indexOf(new Noticia(titulo, categoria, user));
         }
         
         return pos;
     }
 
-    public void nuevaNoticia(String titulo, String noticia, String categoria, String autor, Fecha fecha){
+    public void nuevaNoticia(String titulo, String noticia, Categoria categoria, Usuario autor, Fecha fecha){
         noticias.add(new Noticia(titulo, noticia, categoria, autor, fecha));
     }
 
@@ -77,10 +78,12 @@ public class Empresa {
         return noticias;
     }
 
-    public ArrayList<String> getCategoria() {
+    public ArrayList<Categoria> getCategoria() {
         return categoria;
     }
-    
+    public Usuario getUsuario(String user){
+        return autores.get(user);
+    }
     
 
 }

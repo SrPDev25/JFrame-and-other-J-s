@@ -146,7 +146,7 @@ public class VtnLoging extends MyJFrame {
         String user=txtUser.getText().trim();
         String pass=new String(pswPass.getPassword());
         if(miEmpresa.usuarioExiste(user,pass)==0){
-            new VtnControl(miEmpresa,user).setVisible(true);
+            new VtnControl(miEmpresa,miEmpresa.getUsuario(user)).setVisible(true);
             dispose();
             pack();
         }else {

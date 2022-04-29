@@ -8,20 +8,17 @@ import control.Empresa;
 import control.Fecha;
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
-import modelo.Noticia;
+import modelo.Categoria;
 import modelo.Usuario;
 
-/**
- *
- * @author satan
- */
+
 public class PanelAltaNoticia extends javax.swing.JPanel {
 
-    Empresa miEmpresa;
-    String usuarioActivo;
-    DefaultComboBoxModel modeloCombo;
+    private Empresa miEmpresa;
+    private Usuario usuarioActivo;
+    private DefaultComboBoxModel modeloCombo;
 
-    public PanelAltaNoticia(Empresa miEmpresa, String usuarioActivo) {
+    public PanelAltaNoticia(Empresa miEmpresa, Usuario usuarioActivo) {
         initComponents();
         this.miEmpresa = miEmpresa;
         this.usuarioActivo = usuarioActivo;
@@ -91,6 +88,10 @@ public class PanelAltaNoticia extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblErrorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -99,9 +100,6 @@ public class PanelAltaNoticia extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(lblErrorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(jLabel1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -109,13 +107,10 @@ public class PanelAltaNoticia extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(txtTitulo))
                     .addComponent(btnPublicar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblErrorTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblErrorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,32 +147,33 @@ public class PanelAltaNoticia extends javax.swing.JPanel {
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
         String titulo = txtTitulo.getText().trim();
         String noticia;
-        String categoria;
         Fecha fecha;
         boolean correcto=true;
-        int posTitulo = miEmpresa.tituloExiste(titulo);
         int posCategoria=comboCategoria.getSelectedIndex();
+        Categoria categoria=(Categoria)modeloCombo.getElementAt(posCategoria);
+        int pos;
         
-        if (posTitulo > -1) {
-            lblErrorTitulo.setText("Título ya utilizado");
-            correcto=false;
-        } else if(posTitulo==-2) {
-            correcto=false;
-            lblErrorTitulo.setText("No se determino un título");
-        }else{
-            lblErrorTitulo.setText("");
-            
-        }
+        
 
         if (posCategoria==0) {
             correcto=false;
             lblErrorCategoria.setText("Elige una categoria");
         }else{
+            pos = miEmpresa.noticiaValida(titulo, usuarioActivo, categoria);
             lblErrorCategoria.setText("");
+            if (pos > -1) {
+                lblErrorTitulo.setText("Ya has utilizado este titulo en esta categoría");
+                correcto = false;
+            } else if (pos == -2) {
+                correcto = false;
+                lblErrorTitulo.setText("No se determino un título");
+            } else {
+                lblErrorTitulo.setText("");
+
+            }
         }
         
         if (correcto) {
-            categoria=(String)modeloCombo.getElementAt(posCategoria);
             noticia = txtNoticia.getText();
             fecha = new Fecha();
             fecha.setToday();
